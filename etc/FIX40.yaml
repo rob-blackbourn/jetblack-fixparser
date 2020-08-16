@@ -1,0 +1,1485 @@
+# FIX 4.0
+
+version:
+  major: '4'
+  minor: '0'
+  servicepack: '0'
+
+beginString: FIX.4.0
+
+fields:
+
+  Account:
+    number: 1
+    type: CHAR
+
+  AdvId:
+    number: 2
+    type: INT
+
+  AdvRefID:
+    number: 3
+    type: INT
+
+  AdvSide:
+    number: 4
+    type: CHAR
+    values:
+      B: BUY
+      S: SELL
+      T: TRADE
+      X: CROSS
+
+  AdvTransType:
+    number: 5
+    type: CHAR
+    values:
+      C: CANCEL
+      N: NEW
+      R: REPLACE
+
+  AvgPx:
+    number: 6
+    type: FLOAT
+
+  BeginSeqNo:
+    number: 7
+    type: INT
+
+  BeginString:
+    number: 8
+    type: CHAR
+
+  BodyLength:
+    number: 9
+    type: INT
+
+  CheckSum:
+    number: 10
+    type: CHAR
+
+  ClOrdID:
+    number: 11
+    type: CHAR
+
+  Commission:
+    number: 12
+    type: FLOAT
+
+  CommType:
+    number: 13
+    type: CHAR
+    values:
+      1: PER_SHARE
+      2: PERCENTAGE
+      3: ABSOLUTE
+
+  CumQty:
+    number: 14
+    type: INT
+
+  Currency:
+    number: 15
+    type: CHAR
+
+  EndSeqNo:
+    number: 16
+    type: INT
+
+  ExecID:
+    number: 17
+    type: INT
+
+  ExecInst:
+    number: 18
+    type: CHAR
+    values:
+      0: STAY_ON_OFFERSIDE
+      1: NOT_HELD
+      2: WORK
+      3: GO_ALONG
+      4: OVER_THE_DAY
+      5: HELD
+      6: PARTICIPATE_DONT_INITIATE
+      7: STRICT_SCALE
+      8: TRY_TO_SCALE
+      9: STAY_ON_BIDSIDE
+      A: NO_CROSS
+      B: OK_TO_CROSS
+      C: CALL_FIRST
+      D: PERCENT_OF_VOLUME
+      E: DO_NOT_INCREASE
+      F: DO_NOT_REDUCE
+      G: ALL_OR_NONE
+      I: INSTITUTIONS_ONLY
+      L: LAST_PEG
+      M: MID_PRICE_PEG
+      N: NON_NEGOTIABLE
+      O: OPENING_PEG
+      P: MARKET_PEG
+      R: PRIMARY_PEG
+      S: SUSPEND
+
+  ExecRefID:
+    number: 19
+    type: INT
+
+  ExecTransType:
+    number: 20
+    type: CHAR
+    values:
+      0: NEW
+      1: CANCEL
+      2: CORRECT
+      3: STATUS
+
+  HandlInst:
+    number: 21
+    type: CHAR
+    values:
+      1: AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION
+      2: AUTOMATED_EXECUTION_ORDER_PUBLIC_BROKER_INTERVENTION_OK
+      3: MANUAL_ORDER_BEST_EXECUTION
+
+  IDSource:
+    number: 22
+    type: CHAR
+    values:
+      1: CUSIP
+      2: SEDOL
+      3: QUIK
+      4: ISIN_NUMBER
+      5: RIC_CODE
+
+  IOIid:
+    number: 23
+    type: INT
+
+  IOIOthSvc:
+    number: 24
+    type: CHAR
+    values:
+      A: AUTEX
+      B: BRIDGE
+
+  IOIQltyInd:
+    number: 25
+    type: CHAR
+    values:
+      H: HIGH
+      L: LOW
+      M: MEDIUM
+
+  IOIRefID:
+    number: 26
+    type: INT
+
+  IOIShares:
+    number: 27
+    type: CHAR
+    values:
+      L: LARGE
+      M: MEDIUM
+      S: SMALL
+
+  IOITransType:
+    number: 28
+    type: CHAR
+    values:
+      C: CANCEL
+      N: NEW
+      R: REPLACE
+
+  LastCapacity:
+    number: 29
+    type: CHAR
+    values:
+      1: AGENT
+      2: CROSS_AS_AGENT
+      3: CROSS_AS_PRINCIPAL
+      4: PRINCIPAL
+
+  LastMkt:
+    number: 30
+    type: CHAR
+
+  LastPx:
+    number: 31
+    type: FLOAT
+
+  LastShares:
+    number: 32
+    type: INT
+
+  LinesOfText:
+    number: 33
+    type: INT
+
+  MsgSeqNum:
+    number: 34
+    type: INT
+
+  MsgType:
+    number: 35
+    type: CHAR
+    values:
+      0: HEARTBEAT
+      1: TEST_REQUEST
+      2: RESEND_REQUEST
+      3: REJECT
+      4: SEQUENCE_RESET
+      5: LOGOUT
+      6: INDICATION_OF_INTEREST
+      7: ADVERTISEMENT
+      8: EXECUTION_REPORT
+      9: ORDER_CANCEL_REJECT
+      A: LOGON
+      B: NEWS
+      C: EMAIL
+      D: ORDER_D
+      E: ORDER_E
+      F: ORDER_CANCEL_REQUEST
+      G: ORDER_CANCEL_REPLACE_REQUEST
+      H: ORDER_STATUS_REQUEST
+      J: ALLOCATION
+      K: LIST_CANCEL_REQUEST
+      L: LIST_EXECUTE
+      M: LIST_STATUS_REQUEST
+      N: LIST_STATUS
+      P: ALLOCATION_ACK
+      Q: DONT_KNOW_TRADE
+      R: QUOTE_REQUEST
+      S: QUOTE
+
+  NewSeqNo:
+    number: 36
+    type: INT
+
+  OrderID:
+    number: 37
+    type: CHAR
+
+  OrderQty:
+    number: 38
+    type: INT
+
+  OrdStatus:
+    number: 39
+    type: CHAR
+    values:
+      0: NEW
+      1: PARTIALLY_FILLED
+      2: FILLED
+      3: DONE_FOR_DAY
+      4: CANCELED
+      5: REPLACED
+      6: PENDING_CANCEL_REPLACE
+      7: STOPPED
+      8: REJECTED
+      9: SUSPENDED
+      A: PENDING_NEW
+      B: CALCULATED
+      C: EXPIRED
+
+  OrdType:
+    number: 40
+    type: CHAR
+    values:
+      1: MARKET
+      2: LIMIT
+      3: STOP
+      4: STOP_LIMIT
+      5: MARKET_ON_CLOSE
+      6: WITH_OR_WITHOUT
+      7: LIMIT_OR_BETTER
+      8: LIMIT_WITH_OR_WITHOUT
+      9: ON_BASIS
+      A: ON_CLOSE
+      B: LIMIT_ON_CLOSE
+      C: FOREX
+      D: PREVIOUSLY_QUOTED
+      E: PREVIOUSLY_INDICATED
+      P: PEGGED
+
+  OrigClOrdID:
+    number: 41
+    type: CHAR
+
+  OrigTime:
+    number: 42
+    type: TIME
+
+  PossDupFlag:
+    number: 43
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  Price:
+    number: 44
+    type: FLOAT
+
+  RefSeqNum:
+    number: 45
+    type: INT
+
+  RelatdSym:
+    number: 46
+    type: CHAR
+
+  Rule80A:
+    number: 47
+    type: CHAR
+    values:
+      A: AGENCY_SINGLE_ORDER
+      C: PROGRAM_ORDER_NON_INDEX_ARB_FOR_MEMBER_FIRM_ORG
+      D: PROGRAM_ORDER_INDEX_ARB_FOR_MEMBER_FIRM_ORG
+      I: INDIVIDUAL_INVESTOR_SINGLE_ORDER
+      J: PROGRAM_ORDER_INDEX_ARB_FOR_INDIVIDUAL_CUSTOMER
+      K: PROGRAM_ORDER_NON_INDEX_ARB_FOR_INDIVIDUAL_CUSTOMER
+      M: PROGRAM_ORDER_INDEX_ARB_FOR_OTHER_MEMBER
+      N: PROGRAM_ORDER_NON_INDEX_ARB_FOR_OTHER_MEMBER
+      U: PROGRAM_ORDER_INDEX_ARB_FOR_OTHER_AGENCY
+      W: ALL_OTHER_ORDERS_AS_AGENT_FOR_OTHER_MEMBER
+      Y: PROGRAM_ORDER_NON_INDEX_ARB_FOR_OTHER_AGENCY
+
+  SecurityID:
+    number: 48
+    type: CHAR
+
+  SenderCompID:
+    number: 49
+    type: CHAR
+
+  SenderSubID:
+    number: 50
+    type: CHAR
+
+  SendingTime:
+    number: 52
+    type: TIME
+
+  Shares:
+    number: 53
+    type: INT
+
+  Side:
+    number: 54
+    type: CHAR
+    values:
+      1: BUY
+      2: SELL
+      3: BUY_MINUS
+      4: SELL_PLUS
+      5: SELL_SHORT
+      6: SELL_SHORT_EXEMPT
+
+  Symbol:
+    number: 55
+    type: CHAR
+
+  TargetCompID:
+    number: 56
+    type: CHAR
+
+  TargetSubID:
+    number: 57
+    type: CHAR
+
+  Text:
+    number: 58
+    type: CHAR
+
+  TimeInForce:
+    number: 59
+    type: CHAR
+    values:
+      0: DAY
+      1: GOOD_TILL_CANCEL
+      2: AT_THE_OPENING
+      3: IMMEDIATE_OR_CANCEL
+      4: FILL_OR_KILL
+      5: GOOD_TILL_CROSSING
+      6: GOOD_TILL_DATE
+
+  TransactTime:
+    number: 60
+    type: TIME
+
+  Urgency:
+    number: 61
+    type: CHAR
+    values:
+      0: NORMAL
+      1: FLASH
+      2: BACKGROUND
+
+  ValidUntilTime:
+    number: 62
+    type: TIME
+
+  SettlmntTyp:
+    number: 63
+    type: CHAR
+    values:
+      0: REGULAR
+      1: CASH
+      2: NEXT_DAY
+      3: T_PLUS_2
+      4: T_PLUS_3
+      5: T_PLUS_4
+      6: FUTURE
+      7: WHEN_ISSUED
+      8: SELLERS_OPTION
+      9: T_PLUS_5
+
+  FutSettDate:
+    number: 64
+    type: DATE
+
+  SymbolSfx:
+    number: 65
+    type: CHAR
+
+  ListID:
+    number: 66
+    type: CHAR
+
+  ListSeqNo:
+    number: 67
+    type: INT
+
+  ListNoOrds:
+    number: 68
+    type: INT
+
+  ListExecInst:
+    number: 69
+    type: CHAR
+
+  AllocID:
+    number: 70
+    type: INT
+
+  AllocTransType:
+    number: 71
+    type: CHAR
+    values:
+      0: NEW
+      1: REPLACE
+      2: CANCEL
+
+  RefAllocID:
+    number: 72
+    type: INT
+
+  NoOrders:
+    number: 73
+    type: INT
+
+  AvgPrxPrecision:
+    number: 74
+    type: INT
+
+  TradeDate:
+    number: 75
+    type: DATE
+
+  ExecBroker:
+    number: 76
+    type: CHAR
+
+  OpenClose:
+    number: 77
+    type: CHAR
+
+  NoAllocs:
+    number: 78
+    type: INT
+
+  AllocAccount:
+    number: 79
+    type: CHAR
+
+  AllocShares:
+    number: 80
+    type: INT
+
+  ProcessCode:
+    number: 81
+    type: CHAR
+    values:
+      0: REGULAR
+      1: SOFT_DOLLAR
+      2: STEP_IN
+      3: STEP_OUT
+      4: SOFT_DOLLAR_STEP_IN
+      5: SOFT_DOLLAR_STEP_OUT
+      6: PLAN_SPONSOR
+
+  NoRpts:
+    number: 82
+    type: INT
+
+  RptSeq:
+    number: 83
+    type: INT
+
+  CxlQty:
+    number: 84
+    type: INT
+
+  NoDlvyInst:
+    number: 85
+    type: INT
+
+  DlvyInst:
+    number: 86
+    type: CHAR
+
+  AllocStatus:
+    number: 87
+    type: INT
+    values:
+      0: ACCEPTED
+      1: REJECTED
+      2: PARTIAL_ACCEPT
+      3: RECEIVED
+
+  AllocRejCode:
+    number: 88
+    type: INT
+    values:
+      0: UNKNOWN_ACCOUNT
+      1: INCORRECT_QUANTITY
+      2: INCORRECT_AVERAGE_PRICE
+      3: UNKNOWN_EXECUTING_BROKER_MNEMONIC
+      4: COMMISSION_DIFFERENCE
+      5: UNKNOWN_ORDERID
+      6: UNKNOWN_LISTID
+      7: OTHER
+
+  Signature:
+    number: 89
+    type: DATA
+
+  SecureDataLen:
+    number: 90
+    type: LENGTH
+
+  SecureData:
+    number: 91
+    type: DATA
+
+  BrokerOfCredit:
+    number: 92
+    type: CHAR
+
+  SignatureLength:
+    number: 93
+    type: LENGTH
+
+  EmailType:
+    number: 94
+    type: CHAR
+    values:
+      0: NEW
+      1: REPLY
+      2: ADMIN_REPLY
+
+  RawDataLength:
+    number: 95
+    type: LENGTH
+
+  RawData:
+    number: 96
+    type: DATA
+
+  PossResend:
+    number: 97
+    type: CHAR
+
+  EncryptMethod:
+    number: 98
+    type: INT
+    values:
+      0: NONE
+      1: PKCS
+      2: DES
+      3: PKCS_DES
+      4: PGP_DES
+      5: PGP_DES_MD5
+      6: PEM_DES_MD5
+
+  StopPx:
+    number: 99
+    type: FLOAT
+
+  ExDestination:
+    number: 100
+    type: CHAR
+    values:
+      0: NONE
+      4: POSIT
+
+  CxlRejReason:
+    number: 102
+    type: INT
+    values:
+      0: TOO_LATE_TO_CANCEL
+      1: UNKNOWN_ORDER
+
+  OrdRejReason:
+    number: 103
+    type: INT
+    values:
+      0: BROKER_OPTION
+      1: UNKNOWN_SYMBOL
+      2: EXCHANGE_CLOSED
+      3: ORDER_EXCEEDS_LIMIT
+      4: TOO_LATE_TO_ENTER
+
+  IOIQualifier:
+    number: 104
+    type: CHAR
+    values:
+      A: ALL_OR_NONE
+      C: AT_THE_CLOSE
+      I: IN_TOUCH_WITH
+      L: LIMIT
+      M: MORE_BEHIND
+      O: AT_THE_OPEN
+      P: TAKING_A_POSITION
+      Q: CURRENT_QUOTE
+      S: PORTFOLIO_SHOW_N
+      T: THROUGH_THE_DAY
+      V: VERSUS
+      W: INDICATION
+      X: CROSSING_OPPORTUNITY
+
+  WaveNo:
+    number: 105
+    type: CHAR
+
+  Issuer:
+    number: 106
+    type: CHAR
+
+  SecurityDesc:
+    number: 107
+    type: CHAR
+
+  HeartBtInt:
+    number: 108
+    type: INT
+
+  ClientID:
+    number: 109
+    type: CHAR
+
+  MinQty:
+    number: 110
+    type: INT
+
+  MaxFloor:
+    number: 111
+    type: INT
+
+  TestReqID:
+    number: 112
+    type: CHAR
+
+  ReportToExch:
+    number: 113
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  LocateReqd:
+    number: 114
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  OnBehalfOfCompID:
+    number: 115
+    type: CHAR
+
+  OnBehalfOfSubID:
+    number: 116
+    type: CHAR
+
+  QuoteID:
+    number: 117
+    type: CHAR
+
+  NetMoney:
+    number: 118
+    type: FLOAT
+
+  SettlCurrAmt:
+    number: 119
+    type: FLOAT
+
+  SettlCurrency:
+    number: 120
+    type: CHAR
+
+  ForexReq:
+    number: 121
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  OrigSendingTime:
+    number: 122
+    type: TIME
+
+  GapFillFlag:
+    number: 123
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  NoExecs:
+    number: 124
+    type: INT
+
+  CxlType:
+    number: 125
+    type: CHAR
+    values:
+      F: FULL_REMAINING_QUANTITY
+      P: PARTIAL_CANCEL
+
+  ExpireTime:
+    number: 126
+    type: TIME
+
+  DKReason:
+    number: 127
+    type: CHAR
+    values:
+      A: UNKNOWN_SYMBOL
+      B: WRONG_SIDE
+      C: QUANTITY_EXCEEDS_ORDER
+      D: NO_MATCHING_ORDER
+      E: PRICE_EXCEEDS_LIMIT
+      Z: OTHER
+
+  DeliverToCompID:
+    number: 128
+    type: CHAR
+
+  DeliverToSubID:
+    number: 129
+    type: CHAR
+
+  IOINaturalFlag:
+    number: 130
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  QuoteReqID:
+    number: 131
+    type: CHAR
+
+  BidPx:
+    number: 132
+    type: FLOAT
+
+  OfferPx:
+    number: 133
+    type: FLOAT
+
+  BidSize:
+    number: 134
+    type: INT
+
+  OfferSize:
+    number: 135
+    type: INT
+
+  NoMiscFees:
+    number: 136
+    type: INT
+
+  MiscFeeAmt:
+    number: 137
+    type: FLOAT
+
+  MiscFeeCurr:
+    number: 138
+    type: CHAR
+
+  MiscFeeType:
+    number: 139
+    type: CHAR
+    values:
+      1: REGULATORY
+      2: TAX
+      3: LOCAL_COMMISSION
+      4: EXCHANGE_FEES
+      5: STAMP
+      6: LEVY
+      7: OTHER
+
+  PrevClosePx:
+    number: 140
+    type: FLOAT
+
+components: {}
+
+header:
+
+  BeginString:
+    required: true
+
+  BodyLength:
+    required: true
+
+  MsgType:
+    required: true
+
+  SenderCompID:
+    required: true
+  TargetCompID:
+    required: true
+  OnBehalfOfCompID:
+  DeliverToCompID:
+  SecureDataLen:
+  SecureData:
+  MsgSeqNum:
+  SenderSubID:
+  TargetSubID:
+  OnBehalfOfSubID:
+  DeliverToSubID:
+  PossDupFlag:
+  PossResend:
+  SendingTime:
+    required: true
+  OrigSendingTime:
+
+trailer:
+
+  SignatureLength:
+  Signature:
+  CheckSum:
+    required: true
+
+messages:
+
+  Heartbeat:
+    msgtype: '0'
+    msgcat: admin
+    fields:
+      TestReqID:
+
+  TestRequest:
+    msgtype: '1'
+    msgcat: admin
+    fields:
+      TestReqID:
+        required: true
+
+  ResendRequest:
+    msgtype: '2'
+    msgcat: admin
+    fields:
+      BeginSeqNo:
+        required: true
+      EndSeqNo:
+        required: true
+
+  Reject:
+    msgtype: '3'
+    msgcat: admin
+    fields:
+      RefSeqNum:
+        required: true
+      Text:
+
+  SequenceReset:
+    msgtype: '4'
+    msgcat: admin
+    fields:
+      GapFillFlag:
+      NewSeqNo:
+        required: true
+
+  Logout:
+    msgtype: '5'
+    msgcat: admin
+    fields:
+      Text:
+
+  IOI:
+    msgtype: '6'
+    msgcat: app
+    fields:
+      IOIid:
+        required: true
+      IOITransType:
+        required: true
+      IOIRefID:
+      Symbol:
+        required: true
+      SymbolSfx:
+      SecurityID:
+      IDSource:
+      Issuer:
+      SecurityDesc:
+      Side:
+        required: true
+      IOIShares:
+        required: true
+      Price:
+      Currency:
+      ValidUntilTime:
+      IOIQltyInd:
+      IOIOthSvc:
+      IOINaturalFlag:
+      IOIQualifier:
+      Text:
+
+  Advertisement:
+    msgtype: '7'
+    msgcat: app
+    fields:
+      AdvId:
+        required: true
+      AdvTransType:
+        required: true
+      AdvRefID:
+      Symbol:
+        required: true
+      SymbolSfx:
+      SecurityID:
+      IDSource:
+      Issuer:
+      SecurityDesc:
+      AdvSide:
+        required: true
+      Shares:
+        required: true
+      Price:
+      Currency:
+      TransactTime:
+      Text:
+
+  ExecutionReport:
+    msgtype: '8'
+    msgcat: app
+    fields:
+      OrderID:
+        required: true
+      ClOrdID:
+      ClientID:
+      ExecBroker:
+      ListID:
+      ExecID:
+        required: true
+      ExecTransType:
+        required: true
+      ExecRefID:
+      OrdStatus:
+        required: true
+      OrdRejReason:
+      Account:
+      SettlmntTyp:
+      FutSettDate:
+      Symbol:
+        required: true
+      SymbolSfx:
+      SecurityID:
+      IDSource:
+      Issuer:
+      SecurityDesc:
+      Side:
+        required: true
+      OrderQty:
+        required: true
+      OrdType:
+      Price:
+      StopPx:
+      Currency:
+      TimeInForce:
+      ExpireTime:
+      ExecInst:
+      Rule80A:
+      LastShares:
+        required: true
+      LastPx:
+        required: true
+      LastMkt:
+      LastCapacity:
+      CumQty:
+        required: true
+      AvgPx:
+        required: true
+      TradeDate:
+      TransactTime:
+      ReportToExch:
+      Commission:
+      CommType:
+      NoMiscFees:
+        type: group
+        fields:
+          MiscFeeAmt:
+          MiscFeeCurr:
+          MiscFeeType:
+      NetMoney:
+      SettlCurrAmt:
+      SettlCurrency:
+      Text:
+
+  OrderCancelReject:
+    msgtype: '9'
+    msgcat: app
+    fields:
+      OrderID:
+        required: true
+      ClOrdID:
+        required: true
+      ClientID:
+      ExecBroker:
+      ListID:
+      CxlRejReason:
+      Text:
+
+  Logon:
+    msgtype: A
+    msgcat: admin
+    fields:
+      EncryptMethod:
+        required: true
+      HeartBtInt:
+        required: true
+      RawDataLength:
+      RawData:
+
+  News:
+    msgtype: B
+    msgcat: app
+    fields:
+      OrigTime:
+      Urgency:
+      RelatdSym:
+      LinesOfText:
+        required: true
+      Text:
+        required: true
+      RawDataLength:
+      RawData:
+
+  Email:
+    msgtype: C
+    msgcat: app
+    fields:
+      EmailType:
+        required: true
+      OrigTime:
+      RelatdSym:
+      OrderID:
+      ClOrdID:
+      LinesOfText:
+        required: true
+      Text:
+        required: true
+      RawDataLength:
+      RawData:
+
+  NewOrderSingle:
+    msgtype: D
+    msgcat: app
+    fields:
+      ClOrdID:
+        required: true
+      ClientID:
+      ExecBroker:
+      Account:
+      SettlmntTyp:
+      FutSettDate:
+      HandlInst:
+        required: true
+      ExecInst:
+      MinQty:
+      MaxFloor:
+      ExDestination:
+      ProcessCode:
+      Symbol:
+        required: true
+      SymbolSfx:
+      SecurityID:
+      IDSource:
+      Issuer:
+      SecurityDesc:
+      PrevClosePx:
+      Side:
+        required: true
+      LocateReqd:
+      OrderQty:
+        required: true
+      OrdType:
+        required: true
+      Price:
+      StopPx:
+      Currency:
+      IOIid:
+      QuoteID:
+      TimeInForce:
+      ExpireTime:
+      Commission:
+      CommType:
+      Rule80A:
+      ForexReq:
+      SettlCurrency:
+      Text:
+
+  NewOrderList:
+    msgtype: E
+    msgcat: app
+    fields:
+      ListID:
+        required: true
+      WaveNo:
+      ListSeqNo:
+        required: true
+      ListNoOrds:
+        required: true
+      ListExecInst:
+      ClOrdID:
+        required: true
+      ClientID:
+      ExecBroker:
+      Account:
+      SettlmntTyp:
+      FutSettDate:
+      HandlInst:
+        required: true
+      ExecInst:
+      MinQty:
+      MaxFloor:
+      ExDestination:
+      ProcessCode:
+      Symbol:
+        required: true
+      SymbolSfx:
+      SecurityID:
+      IDSource:
+      Issuer:
+      SecurityDesc:
+      PrevClosePx:
+      Side:
+        required: true
+      LocateReqd:
+      OrderQty:
+        required: true
+      OrdType:
+        required: true
+      Price:
+      StopPx:
+      Currency:
+      TimeInForce:
+      ExpireTime:
+      Commission:
+      CommType:
+      Rule80A:
+      ForexReq:
+      SettlCurrency:
+      Text:
+
+  OrderCancelRequest:
+    msgtype: F
+    msgcat: app
+    fields:
+      OrigClOrdID:
+        required: true
+      OrderID:
+      ClOrdID:
+        required: true
+      ListID:
+      CxlType:
+        required: true
+      ClientID:
+      ExecBroker:
+      Symbol:
+        required: true
+      SymbolSfx:
+      SecurityID:
+      IDSource:
+      Issuer:
+      SecurityDesc:
+      Side:
+        required: true
+      OrderQty:
+        required: true
+      Text:
+
+  OrderCancelReplaceRequest:
+    msgtype: G
+    msgcat: app
+    fields:
+      OrderID:
+      ClientID:
+      ExecBroker:
+      OrigClOrdID:
+        required: true
+      ClOrdID:
+        required: true
+      ListID:
+      Account:
+      SettlmntTyp:
+      FutSettDate:
+      HandlInst:
+        required: true
+      ExecInst:
+      MinQty:
+      MaxFloor:
+      ExDestination:
+      Symbol:
+        required: true
+      SymbolSfx:
+      SecurityID:
+      IDSource:
+      Issuer:
+      SecurityDesc:
+      Side:
+        required: true
+      OrderQty:
+        required: true
+      OrdType:
+        required: true
+      Price:
+      StopPx:
+      Currency:
+      TimeInForce:
+      ExpireTime:
+      Commission:
+      CommType:
+      Rule80A:
+      ForexReq:
+      SettlCurrency:
+      Text:
+
+  OrderStatusRequest:
+    msgtype: H
+    msgcat: app
+    fields:
+      OrderID:
+      ClOrdID:
+        required: true
+      ClientID:
+      ExecBroker:
+      Symbol:
+        required: true
+      SymbolSfx:
+      Issuer:
+      SecurityDesc:
+      Side:
+        required: true
+
+  Allocation:
+    msgtype: J
+    msgcat: app
+    fields:
+      AllocID:
+        required: true
+      AllocTransType:
+        required: true
+      RefAllocID:
+      NoOrders:
+        type: group
+        required: true
+        fields:
+          ClOrdID:
+            required: true
+          OrderID:
+          ListID:
+          WaveNo:
+      NoExecs:
+        type: group
+        fields:
+          ExecID:
+          LastShares:
+          LastPx:
+          LastMkt:
+      Side:
+        required: true
+      Symbol:
+        required: true
+      SymbolSfx:
+      SecurityID:
+      IDSource:
+      Issuer:
+      SecurityDesc:
+      Shares:
+        required: true
+      AvgPx:
+        required: true
+      Currency:
+      AvgPrxPrecision:
+      TradeDate:
+        required: true
+      TransactTime:
+      SettlmntTyp:
+      FutSettDate:
+      NetMoney:
+      NoMiscFees:
+        type: group
+        fields:
+          MiscFeeAmt:
+          MiscFeeCurr:
+          MiscFeeType:
+      SettlCurrAmt:
+      SettlCurrency:
+      OpenClose:
+      Text:
+      NoAllocs:
+        type: group
+        required: true
+        fields:
+          AllocAccount:
+            required: true
+          AllocShares:
+            required: true
+          ProcessCode:
+          ExecBroker:
+          ClientID:
+          Commission:
+          CommType:
+          NoDlvyInst:
+          BrokerOfCredit:
+          DlvyInst:
+
+  ListCancelRequest:
+    msgtype: K
+    msgcat: app
+    fields:
+      ListID:
+        required: true
+      WaveNo:
+      Text:
+
+  ListExecute:
+    msgtype: L
+    msgcat: app
+    fields:
+      ListID:
+        required: true
+      WaveNo:
+      Text:
+
+  ListStatusRequest:
+    msgtype: M
+    msgcat: app
+    fields:
+      ListID:
+        required: true
+      WaveNo:
+      Text:
+
+  ListStatus:
+    msgtype: N
+    msgcat: app
+    fields:
+      ListID:
+        required: true
+      WaveNo:
+      NoRpts:
+        required: true
+      RptSeq:
+        required: true
+      NoOrders:
+        type: group
+        required: true
+        fields:
+          ClOrdID:
+            required: true
+          CumQty:
+            required: true
+          CxlQty:
+            required: true
+          AvgPx:
+            required: true
+
+  AllocationInstructionAck:
+    msgtype: P
+    msgcat: app
+    fields:
+      ClientID:
+      ExecBroker:
+      AllocID:
+        required: true
+      TradeDate:
+        required: true
+      TransactTime:
+      AllocStatus:
+        required: true
+      AllocRejCode:
+      Text:
+
+  DontKnowTrade:
+    msgtype: Q
+    msgcat: app
+    fields:
+      OrderID:
+      ExecID:
+      DKReason:
+        required: true
+      Symbol:
+        required: true
+      Side:
+        required: true
+      OrderQty:
+        required: true
+      LastShares:
+        required: true
+      LastPx:
+        required: true
+      Text:
+
+  QuoteRequest:
+    msgtype: R
+    msgcat: app
+    fields:
+      QuoteReqID:
+        required: true
+      Symbol:
+        required: true
+      SymbolSfx:
+      SecurityID:
+      IDSource:
+      Issuer:
+      SecurityDesc:
+      PrevClosePx:
+      Side:
+      OrderQty:
+        
+  Quote:
+    msgtype: S
+    msgcat: app
+    fields:
+      QuoteReqID:
+      QuoteID:
+        required: true
+      Symbol:
+        required: true
+      SymbolSfx:
+      SecurityID:
+      IDSource:
+      Issuer:
+      SecurityDesc:
+      BidPx:
+        required: true
+      OfferPx:
+      BidSize:
+      OfferSize:
+      ValidUntilTime:

@@ -1,0 +1,2631 @@
+# FIX 4.1
+
+version:
+  major: '4'
+  minor: '1'
+  servicepack: '0'
+
+beginString: FIX.4.1
+
+fields:
+
+  Account:
+    number: 1
+    type: CHAR
+
+  AdvId:
+    number: 2
+    type: CHAR
+
+  AdvRefID:
+    number: 3
+    type: CHAR
+
+  AdvSide:
+    number: 4
+    type: CHAR
+    values:
+      B: BUY
+      S: SELL
+      T: TRADE
+      X: CROSS
+
+  AdvTransType:
+    number: 5
+    type: CHAR
+    values:
+      C: CANCEL
+      N: NEW
+      R: REPLACE
+
+  AvgPx:
+    number: 6
+    type: FLOAT
+
+  BeginSeqNo:
+    number: 7
+    type: INT
+
+  BeginString:
+    number: 8
+    type: CHAR
+
+  BodyLength:
+    number: 9
+    type: INT
+
+  CheckSum:
+    number: 10
+    type: CHAR
+
+  ClOrdID:
+    number: 11
+    type: CHAR
+
+  Commission:
+    number: 12
+    type: FLOAT
+
+  CommType:
+    number: 13
+    type: CHAR
+    values:
+      1: PER_SHARE
+      2: PERCENTAGE
+      3: ABSOLUTE
+
+  CumQty:
+    number: 14
+    type: INT
+
+  Currency:
+    number: 15
+    type: CHAR
+
+  EndSeqNo:
+    number: 16
+    type: INT
+
+  ExecID:
+    number: 17
+    type: CHAR
+
+  ExecInst:
+    number: 18
+    type: CHAR
+    values:
+      0: STAY_ON_OFFERSIDE
+      1: NOT_HELD
+      2: WORK
+      3: GO_ALONG
+      4: OVER_THE_DAY
+      5: HELD
+      6: PARTICIPATE_DONT_INITIATE
+      7: STRICT_SCALE
+      8: TRY_TO_SCALE
+      9: STAY_ON_BIDSIDE
+      A: NO_CROSS
+      B: OK_TO_CROSS
+      C: CALL_FIRST
+      D: PERCENT_OF_VOLUME
+      E: DO_NOT_INCREASE
+      F: DO_NOT_REDUCE
+      G: ALL_OR_NONE
+      I: INSTITUTIONS_ONLY
+      L: LAST_PEG
+      M: MID_PRICE_PEG
+      N: NON_NEGOTIABLE
+      O: OPENING_PEG
+      P: MARKET_PEG
+      R: PRIMARY_PEG
+      S: SUSPEND
+      U: CUSTOMER_DISPLAY_INSTRUCTION
+      V: NETTING
+
+  ExecRefID:
+    number: 19
+    type: CHAR
+
+  ExecTransType:
+    number: 20
+    type: CHAR
+    values:
+      0: NEW
+      1: CANCEL
+      2: CORRECT
+      3: STATUS
+
+  HandlInst:
+    number: 21
+    type: CHAR
+    values:
+      1: AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION
+      2: AUTOMATED_EXECUTION_ORDER_PUBLIC_BROKER_INTERVENTION_OK
+      3: MANUAL_ORDER_BEST_EXECUTION
+
+  IDSource:
+    number: 22
+    type: CHAR
+    values:
+      1: CUSIP
+      2: SEDOL
+      3: QUIK
+      4: ISIN_NUMBER
+      5: RIC_CODE
+      6: ISO_CURRENCY_CODE
+      7: ISO_COUNTRY_CODE
+
+  IOIid:
+    number: 23
+    type: CHAR
+
+  IOIOthSvc:
+    number: 24
+    type: CHAR
+    values:
+      A: AUTEX
+      B: BRIDGE
+
+  IOIQltyInd:
+    number: 25
+    type: CHAR
+    values:
+      H: HIGH
+      L: LOW
+      M: MEDIUM
+
+  IOIRefID:
+    number: 26
+    type: CHAR
+
+  IOIShares:
+    number: 27
+    type: CHAR
+    values:
+      L: LARGE
+      M: MEDIUM
+      S: SMALL
+
+  IOITransType:
+    number: 28
+    type: CHAR
+    values:
+      C: CANCEL
+      N: NEW
+      R: REPLACE
+
+  LastCapacity:
+    number: 29
+    type: CHAR
+    values:
+      1: AGENT
+      2: CROSS_AS_AGENT
+      3: CROSS_AS_PRINCIPAL
+      4: PRINCIPAL
+
+  LastMkt:
+    number: 30
+    type: CHAR
+
+  LastPx:
+    number: 31
+    type: FLOAT
+
+  LastShares:
+    number: 32
+    type: INT
+
+  LinesOfText:
+    number: 33
+    type: INT
+
+  MsgSeqNum:
+    number: 34
+    type: INT
+
+  MsgType:
+    number: 35
+    type: CHAR
+    values:
+      0: HEARTBEAT
+      1: TEST_REQUEST
+      2: RESEND_REQUEST
+      3: REJECT
+      4: SEQUENCE_RESET
+      5: LOGOUT
+      6: INDICATION_OF_INTEREST
+      7: ADVERTISEMENT
+      8: EXECUTION_REPORT
+      9: ORDER_CANCEL_REJECT
+      A: LOGON
+      B: NEWS
+      C: EMAIL
+      D: ORDER_D
+      E: ORDER_E
+      F: ORDER_CANCEL_REQUEST
+      G: ORDER_CANCEL_REPLACE_REQUEST
+      H: ORDER_STATUS_REQUEST
+      J: ALLOCATION
+      K: LIST_CANCEL_REQUEST
+      L: LIST_EXECUTE
+      M: LIST_STATUS_REQUEST
+      N: LIST_STATUS
+      P: ALLOCATION_ACK
+      Q: DONT_KNOW_TRADE
+      R: QUOTE_REQUEST
+      S: QUOTE
+      T: SETTLEMENT_INSTRUCTIONS
+
+  NewSeqNo:
+    number: 36
+    type: INT
+
+  OrderID:
+    number: 37
+    type: CHAR
+
+  OrderQty:
+    number: 38
+    type: INT
+
+  OrdStatus:
+    number: 39
+    type: CHAR
+    values:
+      0: NEW
+      1: PARTIALLY_FILLED
+      2: FILLED
+      3: DONE_FOR_DAY
+      4: CANCELED
+      5: REPLACED
+      6: PENDING_CANCEL_REPLACE
+      7: STOPPED
+      8: REJECTED
+      9: SUSPENDED
+      A: PENDING_NEW
+      B: CALCULATED
+      C: EXPIRED
+
+  OrdType:
+    number: 40
+    type: CHAR
+    values:
+      1: MARKET
+      2: LIMIT
+      3: STOP
+      4: STOP_LIMIT
+      5: MARKET_ON_CLOSE
+      6: WITH_OR_WITHOUT
+      7: LIMIT_OR_BETTER
+      8: LIMIT_WITH_OR_WITHOUT
+      9: ON_BASIS
+      A: ON_CLOSE
+      B: LIMIT_ON_CLOSE
+      C: FOREX_C
+      D: PREVIOUSLY_QUOTED
+      E: PREVIOUSLY_INDICATED
+      F: FOREX_F
+      G: FOREX_G
+      H: FOREX_H
+      P: PEGGED
+
+  OrigClOrdID:
+    number: 41
+    type: CHAR
+
+  OrigTime:
+    number: 42
+    type: TIME
+
+  PossDupFlag:
+    number: 43
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  Price:
+    number: 44
+    type: FLOAT
+
+  RefSeqNum:
+    number: 45
+    type: INT
+
+  RelatdSym:
+    number: 46
+    type: CHAR
+
+  Rule80A:
+    number: 47
+    type: CHAR
+    values:
+      A: AGENCY_SINGLE_ORDER
+      B: SHORT_EXEMPT_TRANSACTION_B
+      C: PROGRAM_ORDER_NON_INDEX_ARB_FOR_MEMBER_FIRM_ORG
+      D: PROGRAM_ORDER_INDEX_ARB_FOR_MEMBER_FIRM_ORG
+      E: REGISTERED_EQUITY_MARKET_MAKER_TRADES
+      F: SHORT_EXEMPT_TRANSACTION_F
+      H: SHORT_EXEMPT_TRANSACTION_H
+      I: INDIVIDUAL_INVESTOR_SINGLE_ORDER
+      J: PROGRAM_ORDER_INDEX_ARB_FOR_INDIVIDUAL_CUSTOMER
+      K: PROGRAM_ORDER_NON_INDEX_ARB_FOR_INDIVIDUAL_CUSTOMER
+      L: SHORT_EXEMPT_TRANSACTION_FOR_MEMBER_COMPETING_MARKET_MAKER_AFFILIATED_WITH_THE_FIRM_CLEARING_THE_TRADE
+      M: PROGRAM_ORDER_INDEX_ARB_FOR_OTHER_MEMBER
+      N: PROGRAM_ORDER_NON_INDEX_ARB_FOR_OTHER_MEMBER
+      O: COMPETING_DEALER_TRADES_O
+      P: PRINCIPAL
+      R: COMPETING_DEALER_TRADES_R
+      S: SPECIALIST_TRADES
+      T: COMPETING_DEALER_TRADES_T
+      U: PROGRAM_ORDER_INDEX_ARB_FOR_OTHER_AGENCY
+      W: ALL_OTHER_ORDERS_AS_AGENT_FOR_OTHER_MEMBER
+      X: SHORT_EXEMPT_TRANSACTION_FOR_MEMBER_COMPETING_MARKET_MAKER_NOT_AFFILIATED_WITH_THE_FIRM_CLEARING_THE_TRADE
+      Y: PROGRAM_ORDER_NON_INDEX_ARB_FOR_OTHER_AGENCY
+      Z: SHORT_EXEMPT_TRANSACTION_FOR_NON_MEMBER_COMPETING_MARKET_MAKER
+
+  SecurityID:
+    number: 48
+    type: CHAR
+
+  SenderCompID:
+    number: 49
+    type: CHAR
+
+  SenderSubID:
+    number: 50
+    type: CHAR
+
+  SendingTime:
+    number: 52
+    type: TIME
+
+  Shares:
+    number: 53
+    type: INT
+
+  Side:
+    number: 54
+    type: CHAR
+    values:
+      1: BUY
+      2: SELL
+      3: BUY_MINUS
+      4: SELL_PLUS
+      5: SELL_SHORT
+      6: SELL_SHORT_EXEMPT
+      7: UNDISCLOSED
+      8: CROSS
+
+  Symbol:
+    number: 55
+    type: CHAR
+
+  TargetCompID:
+    number: 56
+    type: CHAR
+
+  TargetSubID:
+    number: 57
+    type: CHAR
+
+  Text:
+    number: 58
+    type: CHAR
+
+  TimeInForce:
+    number: 59
+    type: CHAR
+    values:
+      0: DAY
+      1: GOOD_TILL_CANCEL
+      2: AT_THE_OPENING
+      3: IMMEDIATE_OR_CANCEL
+      4: FILL_OR_KILL
+      5: GOOD_TILL_CROSSING
+      6: GOOD_TILL_DATE
+
+  TransactTime:
+    number: 60
+    type: TIME
+
+  Urgency:
+    number: 61
+    type: CHAR
+    values:
+      0: NORMAL
+      1: FLASH
+      2: BACKGROUND
+
+  ValidUntilTime:
+    number: 62
+    type: TIME
+
+  SettlmntTyp:
+    number: 63
+    type: CHAR
+    values:
+      0: REGULAR
+      1: CASH
+      2: NEXT_DAY
+      3: T_PLUS_2
+      4: T_PLUS_3
+      5: T_PLUS_4
+      6: FUTURE
+      7: WHEN_ISSUED
+      8: SELLERS_OPTION
+      9: T_PLUS_5
+
+  FutSettDate:
+    number: 64
+    type: DATE
+
+  SymbolSfx:
+    number: 65
+    type: CHAR
+
+  ListID:
+    number: 66
+    type: CHAR
+
+  ListSeqNo:
+    number: 67
+    type: INT
+
+  ListNoOrds:
+    number: 68
+    type: INT
+
+  ListExecInst:
+    number: 69
+    type: CHAR
+
+  AllocID:
+    number: 70
+    type: CHAR
+
+  AllocTransType:
+    number: 71
+    type: CHAR
+    values:
+      0: NEW
+      1: REPLACE
+      2: CANCEL
+      3: PRELIMINARY
+      4: CALCULATED
+
+  RefAllocID:
+    number: 72
+    type: CHAR
+
+  NoOrders:
+    number: 73
+    type: INT
+
+  AvgPrxPrecision:
+    number: 74
+    type: INT
+
+  TradeDate:
+    number: 75
+    type: DATE
+
+  ExecBroker:
+    number: 76
+    type: CHAR
+
+  OpenClose:
+    number: 77
+    type: CHAR
+    values:
+      C: CLOSE
+      O: OPEN
+
+  NoAllocs:
+    number: 78
+    type: INT
+
+  AllocAccount:
+    number: 79
+    type: CHAR
+
+  AllocShares:
+    number: 80
+    type: INT
+
+  ProcessCode:
+    number: 81
+    type: CHAR
+    values:
+      0: REGULAR
+      1: SOFT_DOLLAR
+      2: STEP_IN
+      3: STEP_OUT
+      4: SOFT_DOLLAR_STEP_IN
+      5: SOFT_DOLLAR_STEP_OUT
+      6: PLAN_SPONSOR
+
+  NoRpts:
+    number: 82
+    type: INT
+
+  RptSeq:
+    number: 83
+    type: INT
+
+  CxlQty:
+    number: 84
+    type: INT
+
+  AllocStatus:
+    number: 87
+    type: INT
+    values:
+      0: ACCEPTED
+      1: REJECTED
+      2: PARTIAL_ACCEPT
+      3: RECEIVED
+
+  AllocRejCode:
+    number: 88
+    type: INT
+    values:
+      0: UNKNOWN_ACCOUNT
+      1: INCORRECT_QUANTITY
+      2: INCORRECT_AVERAGE_PRICE
+      3: UNKNOWN_EXECUTING_BROKER_MNEMONIC
+      4: COMMISSION_DIFFERENCE
+      5: UNKNOWN_ORDERID
+      6: UNKNOWN_LISTID
+      7: OTHER
+
+  Signature:
+    number: 89
+    type: DATA
+
+  SecureDataLen:
+    number: 90
+    type: LENGTH
+
+  SecureData:
+    number: 91
+    type: DATA
+
+  BrokerOfCredit:
+    number: 92
+    type: CHAR
+
+  SignatureLength:
+    number: 93
+    type: LENGTH
+
+  EmailType:
+    number: 94
+    type: CHAR
+    values:
+      0: NEW
+      1: REPLY
+      2: ADMIN_REPLY
+
+  RawDataLength:
+    number: 95
+    type: LENGTH
+
+  RawData:
+    number: 96
+    type: DATA
+
+  PossResend:
+    number: 97
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+  EncryptMethod:
+    number: 98
+    type: INT
+    values:
+      0: NONE
+      1: PKCS
+      2: DES
+      3: PKCS_DES
+      4: PGP_DES
+      5: PGP_DES_MD5
+      6: PEM_DES_MD5
+
+  StopPx:
+    number: 99
+    type: FLOAT
+
+  ExDestination:
+    number: 100
+    type: CHAR
+
+  CxlRejReason:
+    number: 102
+    type: INT
+    values:
+      0: TOO_LATE_TO_CANCEL
+      1: UNKNOWN_ORDER
+
+  OrdRejReason:
+    number: 103
+    type: INT
+    values:
+      0: BROKER_OPTION
+      1: UNKNOWN_SYMBOL
+      2: EXCHANGE_CLOSED
+      3: ORDER_EXCEEDS_LIMIT
+      4: TOO_LATE_TO_ENTER
+      5: UNKNOWN_ORDER
+      6: DUPLICATE_ORDER
+
+  IOIQualifier:
+    number: 104
+    type: CHAR
+    values:
+      A: ALL_OR_NONE
+      C: AT_THE_CLOSE
+      I: IN_TOUCH_WITH
+      L: LIMIT
+      M: MORE_BEHIND
+      O: AT_THE_OPEN
+      P: TAKING_A_POSITION
+      Q: AT_THE_MARKET
+      S: PORTFOLIO_SHOW_N
+      T: THROUGH_THE_DAY
+      V: VERSUS
+      W: INDICATION
+      X: CROSSING_OPPORTUNITY
+      Y: AT_THE_MIDPOINT
+      Z: PRE_OPEN
+
+  WaveNo:
+    number: 105
+    type: CHAR
+
+  Issuer:
+    number: 106
+    type: CHAR
+
+  SecurityDesc:
+    number: 107
+    type: CHAR
+
+  HeartBtInt:
+    number: 108
+    type: INT
+
+  ClientID:
+    number: 109
+    type: CHAR
+
+  MinQty:
+    number: 110
+    type: INT
+
+  MaxFloor:
+    number: 111
+    type: INT
+
+  TestReqID:
+    number: 112
+    type: CHAR
+
+  ReportToExch:
+    number: 113
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  LocateReqd:
+    number: 114
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  OnBehalfOfCompID:
+    number: 115
+    type: CHAR
+
+  OnBehalfOfSubID:
+    number: 116
+    type: CHAR
+
+  QuoteID:
+    number: 117
+    type: CHAR
+
+  NetMoney:
+    number: 118
+    type: FLOAT
+
+  SettlCurrAmt:
+    number: 119
+    type: FLOAT
+
+  SettlCurrency:
+    number: 120
+    type: CHAR
+
+  ForexReq:
+    number: 121
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  OrigSendingTime:
+    number: 122
+    type: TIME
+
+  GapFillFlag:
+    number: 123
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  NoExecs:
+    number: 124
+    type: INT
+
+  ExpireTime:
+    number: 126
+    type: TIME
+
+  DKReason:
+    number: 127
+    type: CHAR
+    values:
+      A: UNKNOWN_SYMBOL
+      B: WRONG_SIDE
+      C: QUANTITY_EXCEEDS_ORDER
+      D: NO_MATCHING_ORDER
+      E: PRICE_EXCEEDS_LIMIT
+      Z: OTHER
+
+  DeliverToCompID:
+    number: 128
+    type: CHAR
+
+  DeliverToSubID:
+    number: 129
+    type: CHAR
+
+  IOINaturalFlag:
+    number: 130
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  QuoteReqID:
+    number: 131
+    type: CHAR
+
+  BidPx:
+    number: 132
+    type: FLOAT
+
+  OfferPx:
+    number: 133
+    type: FLOAT
+
+  BidSize:
+    number: 134
+    type: INT
+
+  OfferSize:
+    number: 135
+    type: INT
+
+  NoMiscFees:
+    number: 136
+    type: INT
+
+  MiscFeeAmt:
+    number: 137
+    type: FLOAT
+
+  MiscFeeCurr:
+    number: 138
+    type: CHAR
+
+  MiscFeeType:
+    number: 139
+    type: CHAR
+    values:
+      1: REGULATORY
+      2: TAX
+      3: LOCAL_COMMISSION
+      4: EXCHANGE_FEES
+      5: STAMP
+      6: LEVY
+      7: OTHER
+      8: MARKUP
+
+  PrevClosePx:
+    number: 140
+    type: FLOAT
+
+  ResetSeqNumFlag:
+    number: 141
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+
+  SenderLocationID:
+    number: 142
+    type: CHAR
+
+  TargetLocationID:
+    number: 143
+    type: CHAR
+
+  OnBehalfOfLocationID:
+    number: 144
+    type: CHAR
+
+  DeliverToLocationID:
+    number: 145
+    type: CHAR
+
+  NoRelatedSym:
+    number: 146
+    type: INT
+
+  Subject:
+    number: 147
+    type: CHAR
+
+  Headline:
+    number: 148
+    type: CHAR
+
+  URLLink:
+    number: 149
+    type: CHAR
+
+  ExecType:
+    number: 150
+    type: CHAR
+    values:
+      0: NEW
+      1: PARTIAL_FILL
+      2: FILL
+      3: DONE_FOR_DAY
+      4: CANCELLED
+      5: REPLACE
+      6: PENDING_CANCEL_REPLACE
+      7: STOPPED
+      8: REJECTED
+      9: SUSPENDED
+      A: PENDING_NEW
+      B: CALCULATED
+      C: EXPIRED
+
+  LeavesQty:
+    number: 151
+    type: INT
+
+  CashOrderQty:
+    number: 152
+    type: FLOAT
+
+  AllocAvgPx:
+    number: 153
+    type: FLOAT
+
+  AllocNetMoney:
+    number: 154
+    type: FLOAT
+
+  SettlCurrFxRate:
+    number: 155
+    type: FLOAT
+
+  SettlCurrFxRateCalc:
+    number: 156
+    type: CHAR
+    values:
+      M: MULTIPLY
+      D: DIVIDE
+
+  NumDaysInterest:
+    number: 157
+    type: INT
+
+  AccruedInterestRate:
+    number: 158
+    type: FLOAT
+
+  AccruedInterestAmt:
+    number: 159
+    type: FLOAT
+
+  SettlInstMode:
+    number: 160
+    type: CHAR
+    values:
+      0: DEFAULT
+      1: STANDING_INSTRUCTIONS_PROVIDED
+      2: SPECIFIC_ALLOCATION_ACCOUNT_OVERRIDING
+      3: SPECIFIC_ALLOCATION_ACCOUNT_STANDING
+
+  AllocText:
+    number: 161
+    type: CHAR
+
+  SettlInstID:
+    number: 162
+    type: CHAR
+
+  SettlInstTransType:
+    number: 163
+    type: CHAR
+    values:
+      C: CANCEL
+      N: NEW
+      R: REPLACE
+
+  EmailThreadID:
+    number: 164
+    type: CHAR
+
+  SettlInstSource:
+    number: 165
+    type: CHAR
+    values:
+      1: BROKERS_INSTRUCTIONS
+      2: INSTITUTIONS_INSTRUCTIONS
+
+  SettlLocation:
+    number: 166
+    type: CHAR
+    values:
+      CED: CEDEL
+      DTC: DEPOSITORY_TRUST_COMPANY
+      EUR: EUROCLEAR
+      FED: FEDERAL_BOOK_ENTRY
+      ISO Country Code: LOCAL_MARKET_SETTLE_LOCATION
+      PNY: PHYSICAL
+      PTC: PARTICIPANT_TRUST_COMPANY
+
+  SecurityType:
+    number: 167
+    type: CHAR
+    values:
+      BA: BANKERS_ACCEPTANCE
+      CD: CERTIFICATE_OF_DEPOSIT
+      CMO: COLLATERALIZE_MORTGAGE_OBLIGATION
+      CORP: CORPORATE_BOND
+      CP: COMMERCIAL_PAPER
+      CPP: CORPORATE_PRIVATE_PLACEMENT
+      CS: COMMON_STOCK
+      FHA: FEDERAL_HOUSING_AUTHORITY
+      FHL: FEDERAL_HOME_LOAN
+      FN: FEDERAL_NATIONAL_MORTGAGE_ASSOCIATION
+      FOR: FOREIGN_EXCHANGE_CONTRACT
+      FUT: FUTURE
+      GN: GOVERNMENT_NATIONAL_MORTGAGE_ASSOCIATION
+      GOVT: TREASURIES_PLUS_AGENCY_DEBENTURE
+      MF: MUTUAL_FUND
+      MIO: MORTGAGE_INTEREST_ONLY
+      MPO: MORTGAGE_PRINCIPLE_ONLY
+      MPP: MORTGAGE_PRIVATE_PLACEMENT
+      MPT: MISCELLANEOUS_PASS_THRU
+      MUNI: MUNICIPAL_BOND
+      NONE: NO_ISITC_SECURITY_TYPE
+      OPT: OPTION
+      PS: PREFERRED_STOCK
+      RP: REPURCHASE_AGREEMENT
+      RVRP: REVERSE_REPURCHASE_AGREEMENT
+      SL: STUDENT_LOAN_MARKETING_ASSOCIATION
+      TD: TIME_DEPOSIT
+      USTB: US_TREASURY_BILL
+      WAR: WARRANT
+      ZOO: CATS_TIGERS_LIONS
+
+  EffectiveTime:
+    number: 168
+    type: TIME
+
+  StandInstDbType:
+    number: 169
+    type: INT
+    values:
+      0: OTHER
+      1: DTC_SID
+      2: THOMSON_ALERT
+      3: A_GLOBAL_CUSTODIAN
+
+  StandInstDbName:
+    number: 170
+    type: CHAR
+
+  StandInstDbID:
+    number: 171
+    type: CHAR
+
+  SettlDeliveryType:
+    number: 172
+    type: INT
+
+  SettlDepositoryCode:
+    number: 173
+    type: CHAR
+
+  SettlBrkrCode:
+    number: 174
+    type: CHAR
+
+  SettlInstCode:
+    number: 175
+    type: CHAR
+
+  SecuritySettlAgentName:
+    number: 176
+    type: CHAR
+
+  SecuritySettlAgentCode:
+    number: 177
+    type: CHAR
+
+  SecuritySettlAgentAcctNum:
+    number: 178
+    type: CHAR
+
+  SecuritySettlAgentAcctName:
+    number: 179
+    type: CHAR
+
+  SecuritySettlAgentContactName:
+    number: 180
+    type: CHAR
+
+  SecuritySettlAgentContactPhone:
+    number: 181
+    type: CHAR
+
+  CashSettlAgentName:
+    number: 182
+    type: CHAR
+
+  CashSettlAgentCode:
+    number: 183
+    type: CHAR
+
+  CashSettlAgentAcctNum:
+    number: 184
+    type: CHAR
+
+  CashSettlAgentAcctName:
+    number: 185
+    type: CHAR
+
+  CashSettlAgentContactName:
+    number: 186
+    type: CHAR
+
+  CashSettlAgentContactPhone:
+    number: 187
+    type: CHAR
+
+  BidSpotRate:
+    number: 188
+    type: FLOAT
+
+  BidForwardPoints:
+    number: 189
+    type: FLOAT
+
+  OfferSpotRate:
+    number: 190
+    type: FLOAT
+
+  OfferForwardPoints:
+    number: 191
+    type: FLOAT
+
+  OrderQty2:
+    number: 192
+    type: FLOAT
+
+  FutSettDate2:
+    number: 193
+    type: DATE
+
+  LastSpotRate:
+    number: 194
+    type: FLOAT
+
+  LastForwardPoints:
+    number: 195
+    type: FLOAT
+
+  AllocLinkID:
+    number: 196
+    type: CHAR
+
+  AllocLinkType:
+    number: 197
+    type: INT
+    values:
+      0: F_X_NETTING
+      1: F_X_SWAP
+
+  SecondaryOrderID:
+    number: 198
+    type: CHAR
+
+  NoIOIQualifiers:
+    number: 199
+    type: INT
+
+  MaturityMonthYear:
+    number: 200
+    type: MONTHYEAR
+
+  PutOrCall:
+    number: 201
+    type: INT
+    values:
+      0: PUT
+      1: CALL
+
+  StrikePrice:
+    number: 202
+    type: FLOAT
+
+  CoveredOrUncovered:
+    number: 203
+    type: INT
+    values:
+      0: COVERED
+      1: UNCOVERED
+
+  CustomerOrFirm:
+    number: 204
+    type: INT
+    values:
+      0: CUSTOMER
+      1: FIRM
+
+  MaturityDay:
+    number: 205
+    type: DAYOFMONTH
+
+  OptAttribute:
+    number: 206
+    type: CHAR
+
+  SecurityExchange:
+    number: 207
+    type: CHAR
+
+  NotifyBrokerOfCredit:
+    number: 208
+    type: CHAR
+    values:
+      N: NO
+      Y: YES
+  AllocHandlInst:
+    number: 209
+    type: INT
+    values:
+      1: MATCH
+      2: FORWARD
+      3: FORWARD_AND_MATCH
+
+  MaxShow:
+    number: 210
+    type: INT
+
+  PegDifference:
+    number: 211
+    type: FLOAT
+
+components: {}
+
+header:
+
+  BeginString:
+    required: true
+
+  BodyLength:
+    required: true
+
+  MsgType:
+    required: true
+
+  SenderCompID:
+    required: true
+
+  TargetCompID:
+    required: true
+
+  OnBehalfOfCompID:
+    required: false
+
+  DeliverToCompID:
+    required: false
+
+  SecureDataLen:
+    required: false
+
+  SecureData:
+    required: false
+
+  MsgSeqNum:
+    required: true
+
+  SenderSubID:
+    required: false
+
+  SenderLocationID:
+    required: false
+
+  TargetSubID:
+    required: false
+
+  TargetLocationID:
+    required: false
+
+  OnBehalfOfSubID:
+    required: false
+
+  OnBehalfOfLocationID:
+    required: false
+
+  DeliverToSubID:
+    required: false
+
+  DeliverToLocationID:
+    required: false
+
+  PossDupFlag:
+    required: false
+
+  PossResend:
+    required: false
+
+  SendingTime:
+    required: true
+
+  OrigSendingTime:
+    required: false
+
+trailer:
+
+  SignatureLength:
+    required: false
+
+  Signature:
+    required: false
+
+  CheckSum:
+    required: true
+
+messages:
+
+  Heartbeat:
+    msgtype: '0'
+    msgcat: admin
+    fields:
+      TestReqID:
+        required: false
+
+  TestRequest:
+    msgtype: '1'
+    msgcat: admin
+    fields:
+      TestReqID:
+        required: true
+
+  ResendRequest:
+    msgtype: '2'
+    msgcat: admin
+    fields:
+      BeginSeqNo:
+        required: true
+      EndSeqNo:
+        required: true
+
+  Reject:
+    msgtype: '3'
+    msgcat: admin
+    fields:
+      RefSeqNum:
+        required: true
+      Text:
+        required: false
+
+  SequenceReset:
+    msgtype: '4'
+    msgcat: admin
+    fields:
+      GapFillFlag:
+        required: false
+      NewSeqNo:
+        required: true
+
+  Logout:
+    msgtype: '5'
+    msgcat: admin
+    fields:
+      Text:
+        required: false
+
+  IOI:
+    msgtype: '6'
+    msgcat: app
+    fields:
+      IOIid:
+        required: true
+      IOITransType:
+        required: true
+      IOIRefID:
+        required: false
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      Side:
+        required: true
+      IOIShares:
+        required: true
+      Price:
+        required: false
+      Currency:
+        required: false
+      ValidUntilTime:
+        required: false
+      IOIQltyInd:
+        required: false
+      IOIOthSvc:
+        required: false
+      IOINaturalFlag:
+        required: false
+      NoIOIQualifiers:
+        type: group
+        required: false
+        fields:
+          IOIQualifier:
+            required: false
+      Text:
+        required: false
+      TransactTime:
+        required: false
+      URLLink:
+        required: false
+
+  Advertisement:
+    msgtype: '7'
+    msgcat: app
+    fields:
+      AdvId:
+        required: true
+      AdvTransType:
+        required: true
+      AdvRefID:
+        required: false
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      AdvSide:
+        required: true
+      Shares:
+        required: true
+      Price:
+        required: false
+      Currency:
+        required: false
+      TradeDate:
+        required: false
+      TransactTime:
+        required: false
+      Text:
+        required: false
+      URLLink:
+        required: false
+      LastMkt:
+        required: false
+
+  ExecutionReport:
+    msgtype: '8'
+    msgcat: app
+    fields:
+      OrderID:
+        required: true
+      SecondaryOrderID:
+        required: false
+      ClOrdID:
+        required: false
+      OrigClOrdID:
+        required: false
+      ClientID:
+        required: false
+      ExecBroker:
+        required: false
+      ListID:
+        required: false
+      ExecID:
+        required: true
+      ExecTransType:
+        required: true
+      ExecRefID:
+        required: false
+      ExecType:
+        required: true
+      OrdStatus:
+        required: true
+      OrdRejReason:
+        required: false
+      Account:
+        required: false
+      SettlmntTyp:
+        required: false
+      FutSettDate:
+        required: false
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      Side:
+        required: true
+      OrderQty:
+        required: true
+      OrdType:
+        required: false
+      Price:
+        required: false
+      StopPx:
+        required: false
+      PegDifference:
+        required: false
+      Currency:
+        required: false
+      TimeInForce:
+        required: false
+      ExpireTime:
+        required: false
+      ExecInst:
+        required: false
+      Rule80A:
+        required: false
+      LastShares:
+        required: true
+      LastPx:
+        required: true
+      LastSpotRate:
+        required: false
+      LastForwardPoints:
+        required: false
+      LastMkt:
+        required: false
+      LastCapacity:
+        required: false
+      LeavesQty:
+        required: true
+      CumQty:
+        required: true
+      AvgPx:
+        required: true
+      TradeDate:
+        required: false
+      TransactTime:
+        required: false
+      ReportToExch:
+        required: false
+      Commission:
+        required: false
+      CommType:
+        required: false
+      SettlCurrAmt:
+        required: false
+      SettlCurrency:
+        required: false
+      SettlCurrFxRate:
+        required: false
+      SettlCurrFxRateCalc:
+        required: false
+      Text:
+        required: false
+
+  OrderCancelReject:
+    msgtype: '9'
+    msgcat: app
+    fields:
+      OrderID:
+        required: true
+      SecondaryOrderID:
+        required: false
+      ClOrdID:
+        required: true
+      OrigClOrdID:
+        required: true
+      OrdStatus:
+        required: true
+      ClientID:
+        required: false
+      ExecBroker:
+        required: false
+      ListID:
+        required: false
+      CxlRejReason:
+        required: false
+      Text:
+        required: false
+
+  Logon:
+    msgtype: A
+    msgcat: admin
+    fields:
+      EncryptMethod:
+        required: true
+      HeartBtInt:
+        required: true
+      RawDataLength:
+        required: false
+      RawData:
+        required: false
+      ResetSeqNumFlag:
+        required: false
+
+  News:
+    msgtype: B
+    msgcat: app
+    fields:
+      OrigTime:
+        required: false
+      Urgency:
+        required: false
+      Headline:
+        required: true
+      NoRelatedSym:
+        type: group
+        required: false
+        fields:
+          RelatdSym:
+            required: false
+          SymbolSfx:
+            required: false
+          SecurityID:
+            required: false
+          IDSource:
+            required: false
+          SecurityType:
+            required: false
+          MaturityMonthYear:
+            required: false
+          MaturityDay:
+            required: false
+          PutOrCall:
+            required: false
+          StrikePrice:
+            required: false
+          OptAttribute:
+            required: false
+          SecurityExchange:
+            required: false
+          Issuer:
+            required: false
+          SecurityDesc:
+            required: false
+      LinesOfText:
+        type: group
+        required: true
+        fields:
+          Text:
+            required: true
+      URLLink:
+        required: false
+      RawDataLength:
+        required: false
+      RawData:
+        required: false
+
+  Email:
+    msgtype: C
+    msgcat: app
+    fields:
+      EmailThreadID:
+        required: true
+      EmailType:
+        required: true
+      OrigTime:
+        required: false
+      Subject:
+        required: true
+      NoRelatedSym:
+        type: group
+        required: false
+        fields:
+          RelatdSym:
+            required: false
+          SymbolSfx:
+            required: false
+          SecurityID:
+            required: false
+          IDSource:
+            required: false
+          SecurityType:
+            required: false
+          MaturityMonthYear:
+            required: false
+          MaturityDay:
+            required: false
+          PutOrCall:
+            required: false
+          StrikePrice:
+            required: false
+          OptAttribute:
+            required: false
+          SecurityExchange:
+            required: false
+          Issuer:
+            required: false
+          SecurityDesc:
+            required: false
+      OrderID:
+        required: false
+      ClOrdID:
+        required: false
+      LinesOfText:
+        type: group
+        required: true
+        fields:
+          Text:
+            required: true
+      RawDataLength:
+        required: false
+      RawData:
+        required: false
+
+  NewOrderSingle:
+    msgtype: D
+    msgcat: app
+    fields:
+      ClOrdID:
+        required: true
+      ClientID:
+        required: false
+      ExecBroker:
+        required: false
+      Account:
+        required: false
+      SettlmntTyp:
+        required: false
+      FutSettDate:
+        required: false
+      HandlInst:
+        required: true
+      ExecInst:
+        required: false
+      MinQty:
+        required: false
+      MaxFloor:
+        required: false
+      ExDestination:
+        required: false
+      ProcessCode:
+        required: false
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      PrevClosePx:
+        required: false
+      Side:
+        required: true
+      LocateReqd:
+        required: false
+      OrderQty:
+        required: false
+      CashOrderQty:
+        required: false
+      OrdType:
+        required: true
+      Price:
+        required: false
+      StopPx:
+        required: false
+      Currency:
+        required: false
+      IOIid:
+        required: false
+      QuoteID:
+        required: false
+      TimeInForce:
+        required: false
+      ExpireTime:
+        required: false
+      Commission:
+        required: false
+      CommType:
+        required: false
+      Rule80A:
+        required: false
+      ForexReq:
+        required: false
+      SettlCurrency:
+        required: false
+      Text:
+        required: false
+      FutSettDate2:
+        required: false
+      OrderQty2:
+        required: false
+      OpenClose:
+        required: false
+      CoveredOrUncovered:
+        required: false
+      CustomerOrFirm:
+        required: false
+      MaxShow:
+        required: false
+      PegDifference:
+        required: false
+
+  NewOrderList:
+    msgtype: E
+    msgcat: app
+    fields:
+      ListID:
+        required: true
+      WaveNo:
+        required: false
+      ListSeqNo:
+        required: true
+      ListNoOrds:
+        required: true
+      ListExecInst:
+        required: false
+      ClOrdID:
+        required: true
+      ClientID:
+        required: false
+      ExecBroker:
+        required: false
+      Account:
+        required: false
+      SettlmntTyp:
+        required: false
+      FutSettDate:
+        required: false
+      HandlInst:
+        required: true
+      ExecInst:
+        required: false
+      MinQty:
+        required: false
+      MaxFloor:
+        required: false
+      ExDestination:
+        required: false
+      ProcessCode:
+        required: false
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      PrevClosePx:
+        required: false
+      Side:
+        required: true
+      LocateReqd:
+        required: false
+      OrderQty:
+        required: true
+      OrdType:
+        required: true
+      Price:
+        required: false
+      StopPx:
+        required: false
+      PegDifference:
+        required: false
+      Currency:
+        required: false
+      TimeInForce:
+        required: false
+      ExpireTime:
+        required: false
+      Commission:
+        required: false
+      CommType:
+        required: false
+      Rule80A:
+        required: false
+      ForexReq:
+        required: false
+      SettlCurrency:
+        required: false
+      Text:
+        required: false
+      FutSettDate2:
+        required: false
+      OrderQty2:
+        required: false
+      OpenClose:
+        required: false
+      CoveredOrUncovered:
+        required: false
+      CustomerOrFirm:
+        required: false
+      MaxShow:
+        required: false
+
+  OrderCancelRequest:
+    msgtype: F
+    msgcat: app
+    fields:
+      OrigClOrdID:
+        required: true
+      OrderID:
+        required: false
+      ClOrdID:
+        required: true
+      ListID:
+        required: false
+      ClientID:
+        required: false
+      ExecBroker:
+        required: false
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      Side:
+        required: true
+      OrderQty:
+        required: false
+      CashOrderQty:
+        required: false
+      Text:
+        required: false
+
+  OrderCancelReplaceRequest:
+    msgtype: G
+    msgcat: app
+    fields:
+      OrderID:
+        required: false
+      ClientID:
+        required: false
+      ExecBroker:
+        required: false
+      OrigClOrdID:
+        required: true
+      ClOrdID:
+        required: true
+      ListID:
+        required: false
+      Account:
+        required: false
+      SettlmntTyp:
+        required: false
+      FutSettDate:
+        required: false
+      HandlInst:
+        required: true
+      ExecInst:
+        required: false
+      MinQty:
+        required: false
+      MaxFloor:
+        required: false
+      ExDestination:
+        required: false
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      Side:
+        required: true
+      OrderQty:
+        required: false
+      CashOrderQty:
+        required: false
+      OrdType:
+        required: true
+      Price:
+        required: false
+      StopPx:
+        required: false
+      PegDifference:
+        required: false
+      Currency:
+        required: false
+      TimeInForce:
+        required: false
+      ExpireTime:
+        required: false
+      Commission:
+        required: false
+      CommType:
+        required: false
+      Rule80A:
+        required: false
+      ForexReq:
+        required: false
+      SettlCurrency:
+        required: false
+      Text:
+        required: false
+      FutSettDate2:
+        required: false
+      OrderQty2:
+        required: false
+      OpenClose:
+        required: false
+      CoveredOrUncovered:
+        required: false
+      CustomerOrFirm:
+        required: false
+      MaxShow:
+        required: false
+      LocateReqd:
+        required: false
+
+  OrderStatusRequest:
+    msgtype: H
+    msgcat: app
+    fields:
+      OrderID:
+        required: false
+      ClOrdID:
+        required: true
+      ClientID:
+        required: false
+      ExecBroker:
+        required: false
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      Side:
+        required: true
+
+  Allocation:
+    msgtype: J
+    msgcat: app
+    fields:
+      AllocID:
+        required: true
+      AllocTransType:
+        required: true
+      RefAllocID:
+        required: false
+      AllocLinkID:
+        required: false
+      AllocLinkType:
+        required: false
+      NoOrders:
+        type: group
+        required: false
+        fields:
+          ClOrdID:
+            required: false
+          OrderID:
+            required: false
+          SecondaryOrderID:
+            required: false
+          ListID:
+            required: false
+          WaveNo:
+            required: false
+      NoExecs:
+        type: group
+        required: false
+        fields:
+          LastShares:
+            required: false
+          ExecID:
+            required: false
+          LastPx:
+            required: false
+          LastCapacity:
+            required: false
+      Side:
+        required: true
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      Shares:
+        required: true
+      LastMkt:
+        required: false
+      AvgPx:
+        required: true
+      Currency:
+        required: false
+      AvgPrxPrecision:
+        required: false
+      TradeDate:
+        required: true
+      TransactTime:
+        required: false
+      SettlmntTyp:
+        required: false
+      FutSettDate:
+        required: false
+      NetMoney:
+        required: false
+      OpenClose:
+        required: false
+      Text:
+        required: false
+      NumDaysInterest:
+        required: false
+      AccruedInterestRate:
+        required: false
+      NoAllocs:
+        type: group
+        required: false
+        fields:
+          AllocAccount:
+            required: false
+          AllocShares:
+            required: true
+          ProcessCode:
+            required: false
+          BrokerOfCredit:
+            required: false
+          NotifyBrokerOfCredit:
+            required: false
+          AllocHandlInst:
+            required: false
+          AllocText:
+            required: false
+          ExecBroker:
+            required: false
+          ClientID:
+            required: false
+          Commission:
+            required: false
+          CommType:
+            required: false
+          AllocAvgPx:
+            required: false
+          AllocNetMoney:
+            required: false
+          SettlCurrAmt:
+            required: false
+          SettlCurrency:
+            required: false
+          SettlCurrFxRate:
+            required: false
+          SettlCurrFxRateCalc:
+            required: false
+          AccruedInterestAmt:
+            required: false
+          SettlInstMode:
+            required: false
+          NoMiscFees:
+            type: group
+            required: false
+            fields:
+              MiscFeeAmt:
+                required: false
+              MiscFeeCurr:
+                required: false
+              MiscFeeType:
+                required: false
+
+  ListCancelRequest:
+    msgtype: K
+    msgcat: app
+    fields:
+      ListID:
+        required: true
+      WaveNo:
+        required: false
+      Text:
+        required: false
+
+  ListExecute:
+    msgtype: L
+    msgcat: app
+    fields:
+      ListID:
+        required: true
+      WaveNo:
+        required: false
+      Text:
+        required: false
+
+  ListStatusRequest:
+    msgtype: M
+    msgcat: app
+    fields:
+      ListID:
+        required: true
+      WaveNo:
+        required: false
+      Text:
+        required: false
+
+  ListStatus:
+    msgtype: N
+    msgcat: app
+    fields:
+      ListID:
+        required: true
+      WaveNo:
+        required: false
+      NoRpts:
+        required: true
+      RptSeq:
+        required: true
+      NoOrders:
+        type: group
+        required: true
+        fields:
+          ClOrdID:
+            required: true
+          CumQty:
+            required: true
+          LeavesQty:
+            required: true
+          CxlQty:
+            required: true
+          AvgPx:
+            required: true
+
+  AllocationInstructionAck:
+    msgtype: P
+    msgcat: app
+    fields:
+      ClientID:
+        required: false
+      ExecBroker:
+        required: false
+      AllocID:
+        required: true
+      TradeDate:
+        required: true
+      TransactTime:
+        required: false
+      AllocStatus:
+        required: true
+      AllocRejCode:
+        required: false
+      Text:
+        required: false
+
+  DontKnowTrade:
+    msgtype: Q
+    msgcat: app
+    fields:
+      OrderID:
+        required: false
+      ExecID:
+        required: false
+      DKReason:
+        required: true
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      Side:
+        required: true
+      OrderQty:
+        required: false
+      CashOrderQty:
+        required: false
+      LastShares:
+        required: false
+      LastPx:
+        required: false
+      Text:
+        required: false
+
+  QuoteRequest:
+    msgtype: R
+    msgcat: app
+    fields:
+      QuoteReqID:
+        required: true
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      PrevClosePx:
+        required: false
+      Side:
+        required: false
+      OrderQty:
+        required: false
+      FutSettDate:
+        required: false
+      OrdType:
+        required: false
+      FutSettDate2:
+        required: false
+      OrderQty2:
+        required: false
+
+  Quote:
+    msgtype: S
+    msgcat: app
+    fields:
+      QuoteReqID:
+        required: false
+      QuoteID:
+        required: true
+      Symbol:
+        required: true
+      SymbolSfx:
+        required: false
+      SecurityID:
+        required: false
+      IDSource:
+        required: false
+      SecurityType:
+        required: false
+      MaturityMonthYear:
+        required: false
+      MaturityDay:
+        required: false
+      PutOrCall:
+        required: false
+      StrikePrice:
+        required: false
+      OptAttribute:
+        required: false
+      SecurityExchange:
+        required: false
+      Issuer:
+        required: false
+      SecurityDesc:
+        required: false
+      BidPx:
+        required: false
+      OfferPx:
+        required: false
+      BidSize:
+        required: false
+      OfferSize:
+        required: false
+      ValidUntilTime:
+        required: false
+      BidSpotRate:
+        required: false
+      OfferSpotRate:
+        required: false
+      BidForwardPoints:
+        required: false
+      OfferForwardPoints:
+        required: false
+      TransactTime:
+        required: false
+      FutSettDate:
+        required: false
+      OrdType:
+        required: false
+      FutSettDate2:
+        required: false
+      OrderQty2:
+        required: false
+        
+  SettlementInstructions:
+    msgtype: T
+    msgcat: app
+    fields:
+      SettlInstID:
+        required: true
+      SettlInstTransType:
+        required: true
+      SettlInstMode:
+        required: true
+      SettlInstSource:
+        required: true
+      AllocAccount:
+        required: true
+      SettlLocation:
+        required: false
+      TradeDate:
+        required: false
+      AllocID:
+        required: false
+      LastMkt:
+        required: false
+      Side:
+        required: false
+      SecurityType:
+        required: false
+      EffectiveTime:
+        required: false
+      TransactTime:
+        required: true
+      ClientID:
+        required: false
+      ExecBroker:
+        required: false
+      StandInstDbType:
+        required: false
+      StandInstDbName:
+        required: false
+      StandInstDbID:
+        required: false
+      SettlDeliveryType:
+        required: false
+      SettlDepositoryCode:
+        required: false
+      SettlBrkrCode:
+        required: false
+      SettlInstCode:
+        required: false
+      SecuritySettlAgentName:
+        required: false
+      SecuritySettlAgentCode:
+        required: false
+      SecuritySettlAgentAcctNum:
+        required: false
+      SecuritySettlAgentAcctName:
+        required: false
+      SecuritySettlAgentContactName:
+        required: false
+      SecuritySettlAgentContactPhone:
+        required: false
+      CashSettlAgentName:
+        required: false
+      CashSettlAgentCode:
+        required: false
+      CashSettlAgentAcctNum:
+        required: false
+      CashSettlAgentAcctName:
+        required: false
+      CashSettlAgentContactName:
+        required: false
+      CashSettlAgentContactPhone:
+        required: false

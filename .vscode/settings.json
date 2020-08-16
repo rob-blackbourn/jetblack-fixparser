@@ -1,0 +1,21 @@
+{
+    "editor.rulers": [80],
+    "[python]": {
+        "editor.formatOnSave": true
+    },
+    "python.pythonPath": ".venv/bin/python",
+    "python.linting.pylintUseMinimalCheckers": false,
+    "python.linting.pylintEnabled": true,
+    "python.linting.mypyEnabled": true,
+    "cSpell.words": [
+        "fixparser",
+        "jetblack",
+        "ruamel"
+    ],
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
+}

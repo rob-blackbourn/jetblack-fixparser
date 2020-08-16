@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "jetblack-fixparser"
+version = "1.0.0"
+description = "A parser for FIX messages"
+authors = ["Rob Blackbourn <rob.blackbourn@googlemail.com>"]
+license = "Apache-2.0"
+packages = [
+    { include = "jetblack_fixparser" }
+]
+repository = "https://github.com/rob-blackbourn/jetblack-fixparser"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+wheel = "^0.34.2"
+"ruamel.yaml" = "^0.16.10"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.2"
+pytest-runner = "^4.2"
+pylint = "^2.5.3"
+autopep8 = "^1.5.3"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
