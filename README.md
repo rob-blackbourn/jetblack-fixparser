@@ -17,6 +17,11 @@ This configuration is typically loaded from a file. The source repository
 contains a number of such files in the `/etc` folder in `YAML` format. There is
 also a *QuickFix* loader.
 
+The YAML format makes use of defaults. All message fields default to type `field`,
+so only `group` and `component` fields need to be explicitly specified. Also all
+message fields are consider optional, non-optional fields must be marked as
+`required: true`.
+
 ## Usage
 
 To decode a FIX bytes buffer -
