@@ -24,6 +24,8 @@ message fields are consider optional, non-optional fields must be marked as
 
 ## Usage
 
+### Decoding
+
 To decode a FIX bytes buffer -
 
 ```python
@@ -53,6 +55,8 @@ Note that strict validation is enabled. This ensures all required fields are
 specified. Also the separator is changed from `NULL` to `|` to so they can be
 displayed. However the checksum was calculated with the original field separator
 so the `convert_sep_for_checksum` is set to `true`.
+
+### Encoding
 
 To encode a dictionary describing a FIX message - 
 
@@ -87,6 +91,8 @@ print(buffer)
 
 Note that the `BeginString`, `BodyLength` and `Checksum` fields were automatically
 generated.
+
+### Factories
 
 To encode and decode a message using a factory - 
 
