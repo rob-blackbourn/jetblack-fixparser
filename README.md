@@ -50,6 +50,11 @@ fix_message = FixMessage.decode(
 print(fix_message.message)
 ```
 
+Note that strict validation is enabled. This ensures all required fields are
+specified. Also the separator is changed from `NULL` to `|` to so they can be
+displayed. However the checksum was calculated with the original field separator
+so the `convert_sep_for_checksum` is set to `true`.
+
 To encode a dictionary describing a FIX message - 
 
 ```python
@@ -85,6 +90,9 @@ buffer = fix_message.encode(regenerate_integrity=True)
 print(buffer)
 ```
 
+Note that the `BeginString`, `BodyLength` and `Checksum` fields were automatically
+generated.
+
 To encode and decode a message using a factory - 
 
 ```python
@@ -119,3 +127,6 @@ buffer = fix_message.encode(regenerate_integrity=True)
 roundtrip = FixMessage.decode(protocol, buffer)
 assert fix_message.message == roundtrip.message
 ```
+
+Because the sender and target remain the same, we can simplify message generation
+with the factory.
