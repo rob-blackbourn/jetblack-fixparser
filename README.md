@@ -29,7 +29,6 @@ To decode a FIX bytes buffer -
 ```python
 from jetblack_fixparser import load_yaml_protocol, FixMessage
 
-
 buffer = b'8=FIX.4.4|9=94|35=3|49=A|56=AB|128=B1|34=214|50=U1|52=20100304-09:42:23.130|45=176|371=15|372=X|373=1|58=txt|10=058|',
 
 protocol = load_yaml_protocol(
@@ -58,12 +57,8 @@ so the `convert_sep_for_checksum` is set to `true`.
 To encode a dictionary describing a FIX message - 
 
 ```python
-"""Tests for encoding"""
-
 from datetime import datetime, timezone
-
 from jetblack_fixparser import load_yaml_protocol, FixMessage
-
 
 protocol = load_yaml_protocol(
     'FIX44.yaml',
@@ -96,12 +91,8 @@ generated.
 To encode and decode a message using a factory - 
 
 ```python
-"""Tests for factory encoding"""
-
 from datetime import datetime, timezone
-
 from jetblack_fixparser import load_yaml_protocol, FixMessage, FixMessageFactory
-
 
 protocol = load_yaml_protocol(
     'FIX44.yaml',
