@@ -1,6 +1,6 @@
 """Test the loader"""
 
-from jetblack_fixparser.loader import load_yaml_protocol
+from jetblack_fixparser import load_yaml_protocol
 
 
 def test_loader():

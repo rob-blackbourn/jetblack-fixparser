@@ -1,7 +1,6 @@
 """Test for decoding"""
 
-from jetblack_fixparser.loader import load_yaml_protocol
-from jetblack_fixparser.fix_message import FixMessage
+from jetblack_fixparser import load_yaml_protocol, FixMessage
 
 
 def test_messages():

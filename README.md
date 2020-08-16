@@ -22,8 +22,7 @@ also a *QuickFix* loader.
 To decode a FIX bytes buffer -
 
 ```python
-from jetblack_fixparser.loader import load_yaml_protocol
-from jetblack_fixparser.fix_message import FixMessage
+from jetblack_fixparser import load_yaml_protocol, FixMessage
 
 
 buffer = b'8=FIX.4.4|9=94|35=3|49=A|56=AB|128=B1|34=214|50=U1|52=20100304-09:42:23.130|45=176|371=15|372=X|373=1|58=txt|10=058|',
@@ -53,8 +52,7 @@ To encode a dictionary describing a FIX message -
 
 from datetime import datetime, timezone
 
-from jetblack_fixparser.loader import load_yaml_protocol
-from jetblack_fixparser.fix_message import FixMessage
+from jetblack_fixparser import load_yaml_protocol, FixMessage
 
 
 protocol = load_yaml_protocol(
@@ -89,8 +87,7 @@ To encode and decode a message using a factory -
 
 from datetime import datetime, timezone
 
-from jetblack_fixparser.loader import load_yaml_protocol
-from jetblack_fixparser.fix_message import FixMessage, FixMessageFactory
+from jetblack_fixparser import load_yaml_protocol, FixMessage, FixMessageFactory
 
 
 protocol = load_yaml_protocol(
