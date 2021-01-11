@@ -89,6 +89,8 @@
         "autopep",
         "fixparser",
         "jetblack",
+        "mkdocs",
+        "mypy",
         "numingroup",
         "pylint",
         "pytest",

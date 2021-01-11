@@ -1,0 +1,38 @@
+site_name: jetblack-fixparser
+site_description: A FIX parser
+site_dir: docs
+
+docs_dir: documentation
+
+repo_name: rob-blackbourn/jetblack-fixparser
+repo_url: https://github.com/rob-blackbourn/jetblack-fixparser
+edit_uri: ""
+
+theme:
+    name: 'material'
+
+nav:
+  - index.md
+  - User Guide:
+    - user-guide/installation.md
+    - user-guide/usage.md
+  - API:
+    - jetblack_fixparser: api/jetblack_fixparser.md
+  
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - jetblack_markdown.autodoc:
+      class_from_init: true
+      ignore_dunder: true
+      ignore_private: true
+      ignore_all: false
+      ignore_inherited: false
+      follow_module_tree: false
+      prefer_docstring: true
+  - toc:
+      permalink: true
+
+extra_css:
+    - css/custom.css
