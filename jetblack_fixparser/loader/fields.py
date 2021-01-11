@@ -25,6 +25,14 @@ def _to_field_meta_data(name: str, info: Mapping[str, Any]) -> FieldMetaData:
 
 
 def parse_fields(fields: Mapping[str, Any]) -> Mapping[str, FieldMetaData]:
+    """Parse fields
+
+    Args:
+        fields (Mapping[str, Any]): The fields to parse.
+
+    Returns:
+        Mapping[str, FieldMetaData]: The parsed fields.
+    """
     return {
         name: _to_field_meta_data(name, info)
         for name, info in fields.items()

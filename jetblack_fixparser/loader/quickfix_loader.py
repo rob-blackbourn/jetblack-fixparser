@@ -1,4 +1,4 @@
-"""QuickFix Loader"""
+"""A loader for QuickFix metadata (XML format)"""
 
 from typing import Any, Dict
 import xml.dom.minidom as minidom

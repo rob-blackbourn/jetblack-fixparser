@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jetblack-fixparser"
-version = "1.0.0"
+version = "1.0.1"
 description = "A parser for FIX messages"
 authors = ["Rob Blackbourn <rob.blackbourn@googlemail.com>"]
 license = "Apache-2.0"
@@ -19,6 +19,7 @@ pytest = "^4.2"
 pytest-runner = "^4.2"
 pylint = "^2.5.3"
 autopep8 = "^1.5.3"
+mypy = "^0.790"
 
 [build-system]
 requires = ["poetry>=0.12"]

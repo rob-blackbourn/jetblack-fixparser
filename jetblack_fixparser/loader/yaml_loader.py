@@ -1,4 +1,4 @@
-"""YAML Loader"""
+"""A loader for YAML formated metadata"""
 
 from ruamel.yaml import YAML
 

@@ -99,6 +99,21 @@ def encode(
         regenerate_integrity: bool = True,
         convert_sep_for_checksum: bool = True
 ) -> bytes:
+    """Encode a FIX message.
+
+    Args:
+        protocol (ProtocolMetaData): The FIX protocol.
+        data (MutableMapping[str, Any]): The FIX message.
+        meta_data (MessageMetaData): The message metadata.
+        sep (bytes, optional): THe field separator. Defaults to SOH.
+        regenerate_integrity (bool, optional): If true regenerate the message
+            integrity, including the body length and checksum. Defaults to True.
+        convert_sep_for_checksum (bool, optional): If true convert the field
+            separator to SOH when calculating the checksum. Defaults to True.
+
+    Returns:
+        bytes: The encoded FIX message as a bytes buffer.
+    """
     encoded_message: List[Tuple[bytes, bytes]] = []
 
     if regenerate_integrity:

@@ -77,6 +77,13 @@ class ProtocolMetaData:
         return name in message_type_field.values_by_name
 
     def __str__(self) -> str:
-        return f'<ProtocolMetaData: version="{self.version}", begin_string={self.begin_string}'
+        return (
+            'ProtocolMetaData: '
+            'version="{version}", '
+            'begin_string="{begin_string}"'
+        ).format(
+            version=self.version,
+            begin_string=self.begin_string.decode('ascii')
+        )
 
     __repr__ = __str__

@@ -77,7 +77,7 @@ def _decode_fields_in_order(
         received_field = protocol.fields_by_number.get(field_number)
         if not received_field:
             raise DecodingError(
-                f'received unknown field "{field_number}" of value "{value}"'
+                f'received unknown field "{field_number!r}" of value "{value!r}"'
             )
         meta_datum = _find_next_member(received_field, meta_data, strict)
         if not meta_datum:

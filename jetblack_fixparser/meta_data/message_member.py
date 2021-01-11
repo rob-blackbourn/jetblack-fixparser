@@ -1,6 +1,7 @@
 """"Meta data for FIX message members"""
 
 from __future__ import annotations
+
 from typing import Mapping, Optional, Union
 
 
@@ -33,7 +34,21 @@ class FieldMetaData:
         } if values else None
 
     def __str__(self) -> str:
-        return f'<FieldMetaData: name="{self.name}", number="{self.number!r}", type="{self.type}", values={self.values}'
+        return (
+            'FieldMetaData: '
+            'name="{name}", '
+            'number="{number}", '
+            'type="{type}", '
+            'values={values}'
+        ).format(
+            name=self.name,
+            number=self.number.decode('ascii'),
+            type=self.type,
+            values=None if self.values is None else {
+                name.decode('ascii'): value
+                for name, value in self.values.items()
+            }
+        )
 
     __repr__ = __str__
 
@@ -56,7 +71,10 @@ class ComponentMetaData:
         self.members = members
 
     def __str__(self) -> str:
-        return f'<ComponentMetaData: name="{self.name}", members={self.members}'
+        return 'ComponentMetaData: name="{name}", members={members}'.format(
+            name=self.name,
+            members=self.members
+        )
 
     __repr__ = __str__
 
@@ -86,7 +104,16 @@ class MessageMemberMetaData:
         self.children = children
 
     def __str__(self) -> str:
-        return f'<MessageMemberMetaData: member={self.member}, is_required={self.is_required}, children={self.children}>'
+        return (
+            'MessageMemberMetaData: '
+            'member={member}, '
+            'is_required={is_required}, '
+            'children={children}'
+        ).format(
+            member=self.member,
+            is_required=self.is_required,
+            children=self.children
+        )
 
     __repr__ = __str__
 
