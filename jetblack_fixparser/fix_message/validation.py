@@ -37,7 +37,8 @@ def assert_message_valid(
         encoded_message (List[Tuple[bytes, bytes]]): The encoded message.
         decoded_message (Mapping[str, Any]): The decoded message
         sep (bytes): The field separator
-        convert_sep_to_soh_for_checksum (bool): If true convert the separator before calculating the checksum.
+        convert_sep_to_soh_for_checksum (bool): If true convert the separator
+            before calculating the checksum.
 
     Raises:
         FieldValueError: If the message is invalid.

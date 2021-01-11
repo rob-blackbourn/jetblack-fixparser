@@ -2,7 +2,7 @@
 
 from datetime import datetime, timezone
 from decimal import Decimal
-from typing import Any, List, Union
+from typing import Any, Callable, List, Mapping, Union
 
 from ..meta_data import ProtocolMetaData, FieldMetaData
 from .errors import DecodingError
@@ -199,7 +199,9 @@ def _decode_monthyear(
     return value.decode('ascii')
 
 
-_DECODERS = {
+Decoder = Callable[[ProtocolMetaData, FieldMetaData, bytes], Any]
+
+_DECODERS: Mapping[str, Decoder] = {
     'INT': _decode_int,
     'SEQNUM': _decode_seqnum,
     'NUMINGROUP': _decode_numingroup,

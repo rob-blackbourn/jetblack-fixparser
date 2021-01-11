@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from decimal import Decimal
-from typing import Any, List, Union
+from typing import Any, Callable, List, Mapping, Union
 
 from ..meta_data import ProtocolMetaData, FieldMetaData
 
@@ -218,7 +218,9 @@ def _encode_utcdate(
     return value.strftime('%Y%m%d').encode()
 
 
-_ENCODERS = {
+Encoder = Callable[[ProtocolMetaData, FieldMetaData, Any], bytes]
+
+_ENCODERS: Mapping[str, Encoder] = {
     'INT': _encode_int,
     'SEQNUM': _encode_seqnum,
     'NUMINGROUP': _encode_numingroup,

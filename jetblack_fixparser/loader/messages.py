@@ -68,6 +68,17 @@ def parse_messages(
         field_meta_data: Mapping[str, FieldMetaData],
         component_meta_data: Mapping[str, ComponentMetaData]
 ) -> Mapping[str, MessageMetaData]:
+    """Parse messages.
+
+    Args:
+        messages (Mapping[str, Any]): The messages to parse.
+        field_meta_data (Mapping[str, FieldMetaData]): The field metadata.
+        component_meta_data (Mapping[str, ComponentMetaData]): The component
+            metadata.
+
+    Returns:
+        Mapping[str, MessageMetaData]: The parsed message.
+    """
     return {
         name: _to_message_meta_data(
             name, info, field_meta_data, component_meta_data)
@@ -80,6 +91,17 @@ def parse_header(
         field_meta_data: Mapping[str, FieldMetaData],
         component_meta_data: Mapping[str, ComponentMetaData]
 ) -> Mapping[str, MessageMemberMetaData]:
+    """Parse the header.
+
+    Args:
+        info (Mapping[str, Any]): The header.
+        field_meta_data (Mapping[str, FieldMetaData]): The field metadata.
+        component_meta_data (Mapping[str, ComponentMetaData]): The component
+            metadata.
+
+    Returns:
+        Mapping[str, MessageMemberMetaData]: The parsed header.
+    """
     return _to_message_member_meta_data(info, field_meta_data, component_meta_data)
 
 
@@ -87,6 +109,15 @@ def parse_components(
         info: Optional[Mapping[str, Any]],
         field_meta_data: Mapping[str, FieldMetaData]
 ) -> Mapping[str, ComponentMetaData]:
+    """Parse the components.
+
+    Args:
+        info (Optional[Mapping[str, Any]]): The components
+        field_meta_data (Mapping[str, FieldMetaData]): The field metadata.
+
+    Returns:
+        Mapping[str, ComponentMetaData]: The parsed components.
+    """
     if info is None:
         return dict()
 

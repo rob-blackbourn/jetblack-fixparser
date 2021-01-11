@@ -11,9 +11,12 @@
         "autopep",
         "fixparser",
         "jetblack",
+        "numingroup",
         "pylint",
         "pytest",
         "ruamel",
+        "seqnum",
+        "seqnums",
         "tzinfo"
     ],
     "python.testing.pytestArgs": [
