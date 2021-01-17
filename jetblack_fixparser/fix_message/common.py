@@ -1,6 +1,10 @@
 """Common Code"""
 
-from typing import List, Tuple
+from typing import Any, List, Tuple, Union
+
+from ..meta_data import ProtocolMetaData, FieldMetaData
+from ..types import ValueType
+
 
 SOH = b'\x01'
 
@@ -60,3 +64,30 @@ def calc_body_length(
     trailer = b'='.join(encoded_message[-1]) + sep
     body_length = len(buf) - len(header) - len(trailer)
     return body_length
+
+
+def is_decodeable_enum(
+        protocol: ProtocolMetaData,
+        meta_data: FieldMetaData,
+        value: bytes,
+        value_type: ValueType
+):
+    return (
+        protocol.is_type_enum.get(value_type, True) and
+        meta_data.values and
+        value in meta_data.values
+    )
+
+
+def is_encodeable_enum(
+        protocol: ProtocolMetaData,
+        meta_data: FieldMetaData,
+        value: Union[Any, str],
+        value_type: ValueType
+) -> bool:
+    return (
+        isinstance(value, str) and
+        meta_data.values_by_name and
+        value in meta_data.values_by_name and
+        protocol.is_type_enum.get(value_type, True)
+    )

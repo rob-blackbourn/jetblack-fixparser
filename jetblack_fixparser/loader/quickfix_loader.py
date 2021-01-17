@@ -1,10 +1,11 @@
 """A loader for QuickFix metadata (XML format)"""
 
-from typing import Any, Dict
+from typing import Any, Dict, Mapping, Optional
 import xml.dom.minidom as minidom
 import xml.dom as dom
 
 from ..meta_data import ProtocolMetaData
+from ..types import ValueType
 
 from .loader import load_protocol
 
@@ -128,7 +129,7 @@ def load_quickfix_protocol(
         *,
         is_millisecond_time: bool = True,
         is_float_decimal: bool = False,
-        is_bool_enum: bool = False
+        is_type_enum: Optional[Mapping[ValueType, bool]] = None
 ) -> ProtocolMetaData:
     """Load a QuickFix style XML protocol file
 
@@ -138,8 +139,8 @@ def load_quickfix_protocol(
             Defaults to True.
         is_float_decimal (bool, optional): If true use Decimal for floating
             point numbers. Defaults to False.
-        is_bool_enum (bool, optional): If true use enum names for booleans.
-            Defaults to False.
+        is_type_enum (Optional[Mapping[ValueType, bool]], optional): A map of
+            types to control serialization to enums. Defaults to None.
 
     Returns:
         ProtocolMetaData: The protocol meta data.
@@ -150,5 +151,5 @@ def load_quickfix_protocol(
         config,
         is_millisecond_time=is_millisecond_time,
         is_float_decimal=is_float_decimal,
-        is_bool_enum=is_bool_enum
+        is_type_enum=is_type_enum
     )

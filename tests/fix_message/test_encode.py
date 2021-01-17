@@ -1,8 +1,9 @@
 """Tests for encoding"""
 
 from datetime import datetime, timezone
+from typing import Mapping, Optional
 
-from jetblack_fixparser import load_yaml_protocol, FixMessage
+from jetblack_fixparser import load_yaml_protocol, FixMessage, ValueType
 
 
 def test_encode_logon():
@@ -11,7 +12,7 @@ def test_encode_logon():
         'etc/FIX44.yaml',
         is_millisecond_time=True,
         is_float_decimal=True,
-        is_bool_enum=False
+        is_type_enum={ValueType.BOOLEAN: False}
     )
     sending_time = datetime(2020, 1, 1, 12, 30, 0, tzinfo=timezone.utc)
     messages = [

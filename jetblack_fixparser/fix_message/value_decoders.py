@@ -5,6 +5,9 @@ from decimal import Decimal
 from typing import Any, Callable, List, Mapping, Union
 
 from ..meta_data import ProtocolMetaData, FieldMetaData
+from ..types import ValueType
+
+from .common import is_decodeable_enum
 from .errors import DecodingError
 
 from .common import (
@@ -16,12 +19,12 @@ from .common import (
 
 
 def _decode_int(
-        _protocol: ProtocolMetaData,
+        protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: bytes
 ) -> Union[int, str]:
-    if meta_data.values and value in meta_data.values:
-        return meta_data.values[value]
+    if is_decodeable_enum(protocol, meta_data, value, ValueType.INT):
+        return meta_data.values[value]  # type: ignore
     else:
         return int(value.lstrip(b'0') or b'0')
 
@@ -91,23 +94,23 @@ def _decode_amt(
 
 
 def _decode_char(
-        _protocol: ProtocolMetaData,
+        protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: bytes
 ) -> str:
-    if meta_data.values and value in meta_data.values:
-        return meta_data.values[value]
+    if is_decodeable_enum(protocol, meta_data, value, ValueType.CHAR):
+        return meta_data.values[value]  # type: ignore
     else:
         return value.decode('ascii')
 
 
 def _decode_string(
-        _protocol: ProtocolMetaData,
+        protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: bytes
 ) -> str:
-    if meta_data.values and value in meta_data.values:
-        return meta_data.values[value]
+    if is_decodeable_enum(protocol, meta_data, value, ValueType.STRING):
+        return meta_data.values[value]  # type: ignore
     else:
         return value.decode('ascii')
 
@@ -141,8 +144,8 @@ def _decode_bool(
         meta_data: FieldMetaData,
         value: bytes
 ) -> Union[bool, str]:
-    if protocol.is_bool_enum and meta_data.values and value in meta_data.values:
-        return meta_data.values[value]
+    if is_decodeable_enum(protocol, meta_data, value, ValueType.BOOLEAN):
+        return meta_data.values[value]  # type: ignore
     else:
         return value == b'Y'
 
@@ -202,26 +205,26 @@ def _decode_monthyear(
 Decoder = Callable[[ProtocolMetaData, FieldMetaData, bytes], Any]
 
 _DECODERS: Mapping[str, Decoder] = {
-    'INT': _decode_int,
-    'SEQNUM': _decode_seqnum,
-    'NUMINGROUP': _decode_numingroup,
-    'LENGTH': _decode_length,
-    'FLOAT': _decode_float,
-    'QTY': _decode_qty,
-    'PRICE': _decode_price,
-    'PRICEOFFSET': _decode_price_offset,
-    'AMT': _decode_amt,
-    'CHAR': _decode_char,
-    'STRING': _decode_string,
-    'CURRENCY': _decode_currency,
-    'EXCHANGE': _decode_exchange,
-    'BOOLEAN': _decode_bool,
-    'MULTIPLEVALUESTRING': _decode_multiple_value_str,
-    'UTCTIMESTAMP': _decode_utc_timestamp,
-    'UTCTIMEONLY': _decode_utc_time_only,
-    'LOCALMKTDATE': _decode_localmktdate,
-    'UTCDATE': _decode_utcdate,
-    'MONTHYEAR': _decode_monthyear
+    ValueType.INT.name: _decode_int,
+    ValueType.SEQNUM.name: _decode_seqnum,
+    ValueType.NUMINGROUP.name: _decode_numingroup,
+    ValueType.LENGTH.name: _decode_length,
+    ValueType.FLOAT.name: _decode_float,
+    ValueType.QTY.name: _decode_qty,
+    ValueType.PRICE.name: _decode_price,
+    ValueType.PRICEOFFSET.name: _decode_price_offset,
+    ValueType.AMT.name: _decode_amt,
+    ValueType.CHAR.name: _decode_char,
+    ValueType.STRING.name: _decode_string,
+    ValueType.CURRENCY.name: _decode_currency,
+    ValueType.EXCHANGE.name: _decode_exchange,
+    ValueType.BOOLEAN.name: _decode_bool,
+    ValueType.MULTIPLEVALUESTRING.name: _decode_multiple_value_str,
+    ValueType.UTCTIMESTAMP.name: _decode_utc_timestamp,
+    ValueType.UTCTIMEONLY.name: _decode_utc_time_only,
+    ValueType.LOCALMKTDATE.name: _decode_localmktdate,
+    ValueType.UTCDATE.name: _decode_utcdate,
+    ValueType.MONTHYEAR.name: _decode_monthyear
 }
 
 

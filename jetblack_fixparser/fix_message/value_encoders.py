@@ -5,23 +5,25 @@ from decimal import Decimal
 from typing import Any, Callable, List, Mapping, Union
 
 from ..meta_data import ProtocolMetaData, FieldMetaData
+from ..types import ValueType
 
 from .common import(
     UTCTIMESTAMP_FMT_NO_MILLIS,
     UTCTIMESTAMP_FMT_MILLIS,
     UTCTIMEONLY_FMT_NO_MILLIS,
-    UTCTIMEONLY_FMT_MILLIS
+    UTCTIMEONLY_FMT_MILLIS,
+    is_encodeable_enum
 )
 from .errors import EncodingError
 
 
 def _encode_int(
-        _protocol: ProtocolMetaData,
+        protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: Union[int, str]
 ) -> bytes:
-    if isinstance(value, str) and meta_data.values_by_name and value in meta_data.values_by_name:
-        return meta_data.values_by_name[value]
+    if is_encodeable_enum(protocol, meta_data, value, ValueType.INT):
+        return meta_data.values_by_name[value]  # type: ignore
     else:
         return str(value).encode()
 
@@ -116,23 +118,23 @@ def _encode_amt(
 
 
 def _encode_char(
-        _protocol: ProtocolMetaData,
+        protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: str
 ) -> bytes:
-    if meta_data.values_by_name and value in meta_data.values_by_name:
-        return meta_data.values_by_name[value]
+    if is_encodeable_enum(protocol, meta_data, value, ValueType.CHAR):
+        return meta_data.values_by_name[value]  # type: ignore
     else:
         return value.encode()
 
 
 def _encode_string(
-        _protocol: ProtocolMetaData,
+        protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: str
 ) -> bytes:
-    if meta_data.values_by_name and value in meta_data.values_by_name:
-        return meta_data.values_by_name[value]
+    if is_encodeable_enum(protocol, meta_data, value, ValueType.STRING):
+        return meta_data.values_by_name[value]  # type: ignore
     else:
         return value.encode()
 
@@ -162,12 +164,12 @@ def _encode_monthyear(
 
 
 def _encode_bool(
-        _protocol: ProtocolMetaData,
+        protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: Union[bool, str]
 ) -> bytes:
-    if isinstance(value, str) and meta_data.values_by_name and value in meta_data.values_by_name:
-        return meta_data.values_by_name[value]
+    if is_encodeable_enum(protocol, meta_data, value, ValueType.BOOLEAN):
+        return meta_data.values_by_name[value]  # type: ignore
     else:
         return b'Y' if value else b'N'
 
@@ -221,26 +223,26 @@ def _encode_utcdate(
 Encoder = Callable[[ProtocolMetaData, FieldMetaData, Any], bytes]
 
 _ENCODERS: Mapping[str, Encoder] = {
-    'INT': _encode_int,
-    'SEQNUM': _encode_seqnum,
-    'NUMINGROUP': _encode_numingroup,
-    'LENGTH': _encode_length,
-    'FLOAT': _encode_float,
-    'QTY': _encode_qty,
-    'PRICE': _encode_price,
-    'PRICEOFFSET': _encode_price_offset,
-    'AMT': _encode_amt,
-    'CHAR': _encode_char,
-    'STRING': _encode_string,
-    'CURRENCY': _encode_currency,
-    'EXCHANGE': _encode_exchange,
-    'BOOLEAN': _encode_bool,
-    'MULTIPLEVALUESTRING': _encode_multi_value_str,
-    'UTCTIMESTAMP': _encode_utc_timestamp,
-    'UTCTIMEONLY': _encode_utc_time_only,
-    'LOCALMKTDATE': _encode_localmktdate,
-    'UTCDATE': _encode_utcdate,
-    'MONTHYEAR': _encode_monthyear
+    ValueType.INT.name: _encode_int,
+    ValueType.SEQNUM.name: _encode_seqnum,
+    ValueType.NUMINGROUP.name: _encode_numingroup,
+    ValueType.LENGTH.name: _encode_length,
+    ValueType.FLOAT.name: _encode_float,
+    ValueType.QTY.name: _encode_qty,
+    ValueType.PRICE.name: _encode_price,
+    ValueType.PRICEOFFSET.name: _encode_price_offset,
+    ValueType.AMT.name: _encode_amt,
+    ValueType.CHAR.name: _encode_char,
+    ValueType.STRING.name: _encode_string,
+    ValueType.CURRENCY.name: _encode_currency,
+    ValueType.EXCHANGE.name: _encode_exchange,
+    ValueType.BOOLEAN.name: _encode_bool,
+    ValueType.MULTIPLEVALUESTRING.name: _encode_multi_value_str,
+    ValueType.UTCTIMESTAMP.name: _encode_utc_timestamp,
+    ValueType.UTCTIMEONLY.name: _encode_utc_time_only,
+    ValueType.LOCALMKTDATE.name: _encode_localmktdate,
+    ValueType.UTCDATE.name: _encode_utcdate,
+    ValueType.MONTHYEAR.name: _encode_monthyear
 }
 
 

@@ -2,7 +2,12 @@
 
 from datetime import datetime, timezone
 
-from jetblack_fixparser import load_yaml_protocol, FixMessage, FixMessageFactory
+from jetblack_fixparser import (
+    load_yaml_protocol,
+    FixMessage,
+    FixMessageFactory,
+    ValueType
+)
 
 
 def test_fix_message_factory():
@@ -11,7 +16,7 @@ def test_fix_message_factory():
         'etc/FIX44.yaml',
         is_millisecond_time=True,
         is_float_decimal=True,
-        is_bool_enum=False
+        is_type_enum={ValueType.BOOLEAN: False}
     )
     factory = FixMessageFactory(protocol, "SENDER", "TARGET")
     sending_time = datetime(2020, 1, 1, 12, 30, 0, tzinfo=timezone.utc)

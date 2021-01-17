@@ -1,8 +1,9 @@
 """Loader"""
 
-from typing import Any, Dict
+from typing import Any, Dict, Mapping, Optional
 
 from ..meta_data import ProtocolMetaData
+from ..types import ValueType
 
 from .fields import parse_fields
 from .messages import parse_messages, parse_header, parse_components
@@ -13,7 +14,7 @@ def load_protocol(
         *,
         is_millisecond_time: bool = True,
         is_float_decimal: bool = False,
-        is_bool_enum: bool = False
+        is_type_enum: Optional[Mapping[ValueType, bool]] = None
 ) -> ProtocolMetaData:
     """Load a protocol
 
@@ -23,8 +24,9 @@ def load_protocol(
             Defaults to True.
         is_float_decimal (bool, optional): If true use Decimal for floating
             point numbers. Defaults to False.
-        is_bool_enum (bool, optional): If true use enum names for booleans.
-            Defaults to False.
+        is_type_enum (Optional[Mapping[ValueType, bool]], optional): An optional
+            map to control the serialization of types to enums. Defaults to
+            None.
 
     Returns:
         ProtocolMetaData: The protocol meta data.
@@ -47,5 +49,5 @@ def load_protocol(
         trailer,
         is_millisecond_time=is_millisecond_time,
         is_float_decimal=is_float_decimal,
-        is_bool_enum=is_bool_enum
+        is_type_enum=is_type_enum
     )

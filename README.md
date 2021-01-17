@@ -68,7 +68,7 @@ protocol = load_yaml_protocol(
     'FIX44.yaml',
     is_millisecond_time=True,
     is_float_decimal=True,
-    is_bool_enum=False
+    is_type_enum=None
 )
 sending_time = datetime(2020, 1, 1, 12, 30, 0, tzinfo=timezone.utc)
 
@@ -104,7 +104,7 @@ protocol = load_yaml_protocol(
     'FIX44.yaml',
     is_millisecond_time=True,
     is_float_decimal=True,
-    is_bool_enum=False
+    is_type_enum=None
 )
 
 factory = FixMessageFactory(protocol, "SENDER", "TARGET")

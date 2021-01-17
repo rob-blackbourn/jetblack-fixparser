@@ -1,6 +1,8 @@
 """The FIX protocol meta data"""
 
-from typing import Mapping
+from typing import Mapping, Optional
+
+from ..types import ValueType
 
 from .message_member import FieldMetaData, ComponentMetaData, MessageMemberMetaData
 from .message import MessageMetaData
@@ -21,7 +23,7 @@ class ProtocolMetaData:
             *,
             is_millisecond_time: bool = True,
             is_float_decimal: bool = False,
-            is_bool_enum: bool = False
+            is_type_enum: Optional[Mapping[ValueType, bool]] = None
     ) -> None:
         """Initialise the FIX protocol meta data.
 
@@ -37,8 +39,10 @@ class ProtocolMetaData:
                 millisecond accuracy. Defaults to True.
             is_float_decimal (bool, optional): If true use Decimal to represent
                 floating point values. Defaults to False.
-            is_bool_enum (bool, optional): If true use enum names for boolean
-                values. Defaults to False.
+            is_type_enum (Optional[Mapping[ValueType, bool]], optional): A map
+                of FIX field types to bool, where true or missing indicates an
+                enum should be used when decoding if available. Defaults to
+                None.
         """
         self.version = version
         self.begin_string = begin_string
@@ -57,7 +61,11 @@ class ProtocolMetaData:
         self.trailer = trailer
         self.is_millisecond_time = is_millisecond_time
         self.is_float_decimal = is_float_decimal
-        self.is_bool_enum = is_bool_enum
+        self.is_type_enum: Mapping[ValueType, bool] = {
+            value_type: True
+            for value_type in ValueType
+        }
+        self.is_type_enum.update(is_type_enum or {})
 
     def is_valid_message_name(self, name: str) -> bool:
         """Check if the name is a valid message name
