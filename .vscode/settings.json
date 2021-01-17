@@ -94,6 +94,7 @@
         "numingroup",
         "pylint",
         "pytest",
+        "quickfix",
         "ruamel",
         "seqnum",
         "seqnums",

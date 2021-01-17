@@ -267,6 +267,30 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/protocols/" title="Protocols" class="md-nav__link">
+      Protocols
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../user-guide/factories/" title="Factories" class="md-nav__link">
+      Factories
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -603,6 +627,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#class-valuetypeenum" class="md-nav__link">
+    class ValueType(Enum)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary_9" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_8" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -917,6 +968,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#class-valuetypeenum" class="md-nav__link">
+    class ValueType(Enum)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary_9" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_8" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -967,7 +1045,7 @@
 <div class="autodoc-argument">
         <var class="autodoc-varname">is_float_decimal</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">bool</span><span class="autodoc-punctuation">,</span></div>
 <div class="autodoc-argument">
-        <var class="autodoc-varname">is_bool_enum</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">bool</span></div>
+        <var class="autodoc-varname">is_type_enum</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Optional[Mapping[ValueType, bool]]</span></div>
 <span class="autodoc-punctuation">)</span><span class="autodoc-punctuation"> -&gt; </span><span class="autodoc-vartype">ProtocolMetaData</span></div>
 <br />
 <div class="autodoc-parameters">
@@ -977,8 +1055,8 @@
 Defaults to True.</p>
 <var class="autodoc-varname">is_float_decimal</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">bool</span><p>If true use Decimal for floating
 point numbers. Defaults to False.</p>
-<var class="autodoc-varname">is_bool_enum</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">bool</span><p>If true use enum names for booleans.
-Defaults to False.</p>
+<var class="autodoc-varname">is_type_enum</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Optional[Mapping[ValueType, bool]]</span><p>A map of
+types to control serialization to enums. Defaults to None.</p>
 </div>
 <div class="autodoc-returns">
 <h4 class="autodoc-title" id="returns">Returns<a class="headerlink" href="#returns" title="Permanent link">&para;</a></h4>
@@ -1012,7 +1090,7 @@ Defaults to False.</p>
 <div class="autodoc-argument">
         <var class="autodoc-varname">is_float_decimal</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">bool</span><span class="autodoc-punctuation">,</span></div>
 <div class="autodoc-argument">
-        <var class="autodoc-varname">is_bool_enum</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">bool</span></div>
+        <var class="autodoc-varname">is_type_enum</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Optional[Mapping[ValueType, bool]]</span></div>
 <span class="autodoc-punctuation">)</span><span class="autodoc-punctuation"> -&gt; </span><span class="autodoc-vartype">ProtocolMetaData</span></div>
 <br />
 <div class="autodoc-parameters">
@@ -1022,8 +1100,8 @@ Defaults to False.</p>
 Defaults to True.</p>
 <var class="autodoc-varname">is_float_decimal</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">bool</span><p>If true use Decimal for floating
 point numbers. Defaults to False.</p>
-<var class="autodoc-varname">is_bool_enum</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">bool</span><p>If true use enum names for booleans.
-Defaults to False.</p>
+<var class="autodoc-varname">is_type_enum</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Optional[Mapping[ValueType, bool]]</span><p>Map
+controlling serialization to enums. Defaults to None.</p>
 </div>
 <div class="autodoc-returns">
 <h4 class="autodoc-title" id="returns_1">Returns<a class="headerlink" href="#returns_1" title="Permanent link">&para;</a></h4>
@@ -1300,6 +1378,51 @@ trailer args. Defaults to None.</p>
 </div>
 </div>
 <hr />
+<div class="autodoc-class">
+<h3 class="autodoc-title" id="class-valuetypeenum">
+  <span class="autodoc-title-type">class </span><span class="autodoc-title-name">ValueType</span><span class="autodoc-punctuation">(</span><span class="autodoc-type">Enum</span><span class="autodoc-punctuation">)</span>
+<a class="headerlink" href="#class-valuetypeenum" title="Permanent link">&para;</a></h3>
+<h4 class="autodoc-title" id="summary_9">Summary<a class="headerlink" href="#summary_9" title="Permanent link">&para;</a></h4>
+<p>Value types</p>
+<div class="autodoc-signature"><span class="autodoc-qualifier">jetblack_fixparser</span><span class="autodoc-punctuation">.</span><var class="autodoc-varname">ValueType</var><span class="autodoc-punctuation">(</span><br />
+<div class="autodoc-argument">
+        <var class="autodoc-varname">names</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Any</span><span class="autodoc-punctuation">,</span></div>
+<div class="autodoc-argument">
+        <var class="autodoc-varname">*</var><span class="autodoc-punctuation">,</span></div>
+<div class="autodoc-argument">
+        <var class="autodoc-varname">module</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Any</span><span class="autodoc-punctuation">,</span></div>
+<div class="autodoc-argument">
+        <var class="autodoc-varname">qualname</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Any</span><span class="autodoc-punctuation">,</span></div>
+<div class="autodoc-argument">
+        <var class="autodoc-varname">type</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Any</span><span class="autodoc-punctuation">,</span></div>
+<div class="autodoc-argument">
+        <var class="autodoc-varname">start</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Any</span></div>
+<span class="autodoc-punctuation">)</span><span class="autodoc-punctuation"> -&gt; </span><span class="autodoc-vartype">None</span></div>
+<br />
+<div class="autodoc-parameters">
+<h4 class="autodoc-title" id="parameters_8">Parameters<a class="headerlink" href="#parameters_8" title="Permanent link">&para;</a></h4>
+<var class="autodoc-varname">names</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Any</span><p></p>
+<var class="autodoc-varname">module</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Any</span><p></p>
+<var class="autodoc-varname">qualname</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Any</span><p></p>
+<var class="autodoc-varname">type</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Any</span><p></p>
+<var class="autodoc-varname">start</var><span class="autodoc-punctuation">: </span><span class="autodoc-vartype">Any</span><p></p>
+</div>
+<div class="autodoc-description">
+
+</div>
+<div class="autodoc-attributes">
+
+</div>
+<div class="autodoc-properties">
+
+</div>
+<div class="autodoc-classmethods"></div>
+<div class="autodoc-methods"></div>
+<div class="autodoc-examples">
+
+</div>
+</div>
+<hr />
 </div>
 </p>
                 
@@ -1323,7 +1446,7 @@ trailer args. Defaults to None.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../user-guide/usage/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../user-guide/factories/" title="Factories" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1332,7 +1455,7 @@ trailer args. Defaults to None.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Getting Started
+                Factories
               </span>
             </div>
           </a>

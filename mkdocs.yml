@@ -16,6 +16,8 @@ nav:
   - User Guide:
     - user-guide/installation.md
     - user-guide/usage.md
+    - user-guide/protocols.md
+    - user-guide/factories.md
   - API:
     - jetblack_fixparser: api/jetblack_fixparser.md
   

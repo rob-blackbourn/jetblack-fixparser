@@ -38,7 +38,7 @@
     
     
       
-        <title>Getting Started - jetblack-fixparser</title>
+        <title>Protocols - jetblack-fixparser</title>
       
     
     
@@ -81,7 +81,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#getting-started" tabindex="0" class="md-skip">
+      <a href="#protocols" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -107,7 +107,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Getting Started
+                Protocols
               
             </span>
           
@@ -261,6 +261,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../usage/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -272,11 +284,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Getting Started
+        Protocols
       </label>
     
-    <a href="./" title="Getting Started" class="md-nav__link md-nav__link--active">
-      Getting Started
+    <a href="./" title="Protocols" class="md-nav__link md-nav__link--active">
+      Protocols
     </a>
     
       
@@ -290,30 +302,64 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#protocol-files" class="md-nav__link">
-    Protocol Files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#loaders" class="md-nav__link">
+    Loaders
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#decoding" class="md-nav__link">
-    Decoding
+  <a href="#yaml-protocol-files" class="md-nav__link">
+    YAML protocol files
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#encoding" class="md-nav__link">
-    Encoding
+  <a href="#xml-protocol-files" class="md-nav__link">
+    XML protocol files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    Structure
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fields" class="md-nav__link">
+    Fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    Header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trailer" class="md-nav__link">
+    Trailer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messages" class="md-nav__link">
+    Messages
   </a>
   
 </li>
@@ -331,18 +377,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../protocols/" title="Protocols" class="md-nav__link">
-      Protocols
-    </a>
   </li>
 
         
@@ -420,30 +454,64 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#protocol-files" class="md-nav__link">
-    Protocol Files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#loaders" class="md-nav__link">
+    Loaders
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#decoding" class="md-nav__link">
-    Decoding
+  <a href="#yaml-protocol-files" class="md-nav__link">
+    YAML protocol files
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#encoding" class="md-nav__link">
-    Encoding
+  <a href="#xml-protocol-files" class="md-nav__link">
+    XML protocol files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    Structure
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fields" class="md-nav__link">
+    Fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    Header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trailer" class="md-nav__link">
+    Trailer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messages" class="md-nav__link">
+    Messages
   </a>
   
 </li>
@@ -470,77 +538,141 @@
               
                 
                 
-                <h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
-<h2 id="protocol-files">Protocol Files<a class="headerlink" href="#protocol-files" title="Permanent link">&para;</a></h2>
-<p>While FIX is a standard, the structure of the fields and messages is configurable.
-This configuration is typically loaded from a file. The source repository
-contains a number of such files in the <code>/etc</code> folder in <code>YAML</code> format. There is
-also a <em>QuickFix</em> loader.</p>
-<p>The YAML format makes use of defaults. All message fields default to type <code>field</code>,
-so only <code>group</code> and <code>component</code> fields need to be explicitly specified. Also all
-message fields are consider optional, non-optional fields must be marked as
-<code>required: true</code>.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<h3 id="decoding">Decoding<a class="headerlink" href="#decoding" title="Permanent link">&para;</a></h3>
-<p>To decode a FIX bytes buffer -</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">jetblack_fixparser</span> <span class="kn">import</span> <span class="n">load_yaml_protocol</span><span class="p">,</span> <span class="n">FixMessage</span>
-
-<span class="n">buffer</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;8=FIX.4.4|9=94|35=3|49=A|56=AB|128=B1|34=214|50=U1|52=20100304-09:42:23.130|45=176|371=15|372=X|373=1|58=txt|10=058|&#39;</span><span class="p">,</span>
+                <h1 id="protocols">Protocols<a class="headerlink" href="#protocols" title="Permanent link">&para;</a></h1>
+<p>Messages in FIX rely on a protocol. This protocol describes the fields
+and the structure of messages. As the protocol developed, new fields,
+message types, and structural components were added, leading to different
+versions. See below for an explanation of the message structure.</p>
+<p>Although the protocol is a "standard", it is common that messages may be
+altered, enriched, or new message types provided. When a FIX connection is
+provided, both sides agree on the structure of the messages, and create a
+common protocol.</p>
+<h2 id="loaders">Loaders<a class="headerlink" href="#loaders" title="Permanent link">&para;</a></h2>
+<p>This package provides two loaders: one for YAML formatted files, and one for
+the QuickFIx XML format.</p>
+<h3 id="yaml-protocol-files">YAML protocol files<a class="headerlink" href="#yaml-protocol-files" title="Permanent link">&para;</a></h3>
+<p>The structure of the YAML files is given below. They are loaded in the following
+manner.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">jetblack_fixparser</span> <span class="kn">import</span> <span class="n">load_yaml_protocol</span><span class="p">,</span> <span class="n">ValueType</span>
 
 <span class="n">protocol</span> <span class="o">=</span> <span class="n">load_yaml_protocol</span><span class="p">(</span>
-    <span class="s1">&#39;FIX44.yaml&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;FIX42.yaml&#39;</span><span class="p">,</span>
     <span class="n">is_millisecond_time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">is_float_decimal</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">is_float_decimal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_type_enum</span><span class="o">=</span><span class="p">{</span> <span class="n">ValueType</span><span class="o">.</span><span class="n">BOOLEAN</span><span class="p">:</span> <span class="kc">False</span> <span class="p">}</span>
 <span class="p">)</span>
-
-<span class="n">fix_message</span> <span class="o">=</span> <span class="n">FixMessage</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span>
-    <span class="n">protocol</span><span class="p">,</span>
-    <span class="n">buffer</span><span class="p">,</span>
-    <span class="n">sep</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;|&#39;</span><span class="p">,</span>
-    <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">convert_sep_for_checksum</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">fix_message</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 </code></pre></div>
 
-<p>Note that strict validation is enabled. This ensures all required fields are
-specified. Also the separator is changed from <code>NULL</code> to <code>|</code> to so they can be
-displayed. However the checksum was calculated with the original field separator
-so the <code>convert_sep_for_checksum</code> is set to <code>true</code>.</p>
-<h3 id="encoding">Encoding<a class="headerlink" href="#encoding" title="Permanent link">&para;</a></h3>
-<p>To encode a dictionary describing a FIX message - </p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
-<span class="kn">from</span> <span class="nn">jetblack_fixparser</span> <span class="kn">import</span> <span class="n">load_yaml_protocol</span><span class="p">,</span> <span class="n">FixMessage</span>
+<p>The above example loaded the FIX 4.2 specification. It indicated that times
+will include milliseconds, floats should be converted to decimals, and that
+field of type <code>'BOOLEAN'</code> should not be converted to a text representation.</p>
+<h3 id="xml-protocol-files">XML protocol files<a class="headerlink" href="#xml-protocol-files" title="Permanent link">&para;</a></h3>
+<p>Due to the popularity of the <a href="https://github.com/quickfix/quickfix">QuickFix</a>
+engine, the XML format used by this product is widespread, and a loader is
+provided. You can find the protocol files
+<a href="https://github.com/quickfix/quickfix/tree/master/spec">here</a>.
+They are loaded in the following manner.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">jetblack_fixparser</span> <span class="kn">import</span> <span class="n">load_quickfix_protocol</span><span class="p">,</span> <span class="n">ValueType</span>
 
-<span class="n">protocol</span> <span class="o">=</span> <span class="n">load_yaml_protocol</span><span class="p">(</span>
-    <span class="s1">&#39;FIX44.yaml&#39;</span><span class="p">,</span>
+<span class="n">protocol</span> <span class="o">=</span> <span class="n">load_quickfix_protocol</span><span class="p">(</span>
+    <span class="s1">&#39;FIX42.xml&#39;</span><span class="p">,</span>
     <span class="n">is_millisecond_time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">is_float_decimal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">is_type_enum</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
-<span class="n">sending_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
-
-<span class="n">fix_message</span> <span class="o">=</span> <span class="n">FixMessage</span><span class="p">(</span>
-    <span class="n">protocol</span><span class="p">,</span>
-    <span class="p">{</span>
-        <span class="s1">&#39;MsgType&#39;</span><span class="p">:</span> <span class="s1">&#39;LOGON&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;MsgSeqNum&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
-        <span class="s1">&#39;SenderCompID&#39;</span><span class="p">:</span> <span class="s2">&quot;SENDER&quot;</span><span class="p">,</span>
-        <span class="s1">&#39;TargetCompID&#39;</span><span class="p">:</span> <span class="s2">&quot;TARGET&quot;</span><span class="p">,</span>
-        <span class="s1">&#39;SendingTime&#39;</span><span class="p">:</span> <span class="n">sending_time</span><span class="p">,</span>
-        <span class="s1">&#39;EncryptMethod&#39;</span><span class="p">:</span> <span class="s2">&quot;NONE&quot;</span><span class="p">,</span>
-        <span class="s1">&#39;HeartBtInt&#39;</span><span class="p">:</span> <span class="mi">30</span>
-    <span class="p">}</span>
-<span class="p">)</span>
-<span class="n">buffer</span> <span class="o">=</span> <span class="n">fix_message</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">regenerate_integrity</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
 </code></pre></div>
 
-<p>Note that the <code>BeginString</code>, <code>BodyLength</code> and <code>Checksum</code> fields were automatically
-generated.</p>
+<p>See the YAML loader for a description of the arguments.</p>
+<h2 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h2>
+<p>This package comes with a set of protocol files in YAML format.</p>
+<h3 id="fields">Fields<a class="headerlink" href="#fields" title="Permanent link">&para;</a></h3>
+<p>Fields have a <em>type</em>, a <em>number</em>, and optionally a list fo <em>values</em> that
+can give the raw value a readable meaning.</p>
+<p>Here are a few example fields:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">fields</span><span class="p">:</span>
+
+  <span class="nt">Account</span><span class="p">:</span>
+    <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">STRING</span>
+
+
+  <span class="nt">ExecTransType</span><span class="p">:</span>
+    <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CHAR</span>
+    <span class="nt">values</span><span class="p">:</span>
+      <span class="nt">0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NEW</span>
+      <span class="nt">1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CANCEL</span>
+      <span class="nt">2</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CORRECT</span>
+      <span class="nt">3</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">STATUS</span>
+
+
+  <span class="nt">Price</span><span class="p">:</span>
+    <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">44</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PRICE</span>
+</code></pre></div>
+
+<h3 id="header">Header<a class="headerlink" href="#header" title="Permanent link">&para;</a></h3>
+<p>All messages start with a <em>header</em>. The header fields must be presented in
+order. the order of other parts of the message may have more relaxed 
+ordering constraints.</p>
+<p>Here is an example header for FIX 4.0 (the most simple):</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">header</span><span class="p">:</span>
+  <span class="nt">BeginString</span><span class="p">:</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">BodyLength</span><span class="p">:</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">MsgType</span><span class="p">:</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">SenderCompID</span><span class="p">:</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">TargetCompID</span><span class="p">:</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">OnBehalfOfCompID</span><span class="p">:</span>
+  <span class="nt">DeliverToCompID</span><span class="p">:</span>
+  <span class="nt">SecureDataLen</span><span class="p">:</span>
+  <span class="nt">SecureData</span><span class="p">:</span>
+  <span class="nt">MsgSeqNum</span><span class="p">:</span>
+  <span class="nt">SenderSubID</span><span class="p">:</span>
+  <span class="nt">TargetSubID</span><span class="p">:</span>
+  <span class="nt">OnBehalfOfSubID</span><span class="p">:</span>
+  <span class="nt">DeliverToSubID</span><span class="p">:</span>
+  <span class="nt">PossDupFlag</span><span class="p">:</span>
+  <span class="nt">PossResend</span><span class="p">:</span>
+  <span class="nt">SendingTime</span><span class="p">:</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">OrigSendingTime</span><span class="p">:</span>
+</code></pre></div>
+
+<p>The header consists of a sequence of fields which may be <em>required</em>.</p>
+<h3 id="trailer">Trailer<a class="headerlink" href="#trailer" title="Permanent link">&para;</a></h3>
+<p>All messages end with a <em>trailer</em>.</p>
+<p>Here is an example trailer:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">trailer</span><span class="p">:</span>
+  <span class="nt">SignatureLength</span><span class="p">:</span>
+  <span class="nt">Signature</span><span class="p">:</span>
+  <span class="nt">CheckSum</span><span class="p">:</span>
+    <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+
+<h3 id="messages">Messages<a class="headerlink" href="#messages" title="Permanent link">&para;</a></h3>
+<p>The messages themselves have a similar structure to header and trailer,
+but with a message type and category.</p>
+<p>Here is an example:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">messages</span><span class="p">:</span>
+  <span class="nt">OrderCancelReject</span><span class="p">:</span>
+    <span class="nt">msgtype</span><span class="p">:</span> <span class="s">&#39;9&#39;</span>
+    <span class="nt">msgcat</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">app</span>
+    <span class="nt">fields</span><span class="p">:</span>
+      <span class="nt">OrderID</span><span class="p">:</span>
+        <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="nt">ClOrdID</span><span class="p">:</span>
+        <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="nt">ClientID</span><span class="p">:</span>
+      <span class="nt">ExecBroker</span><span class="p">:</span>
+      <span class="nt">ListID</span><span class="p">:</span>
+      <span class="nt">CxlRejReason</span><span class="p">:</span>
+      <span class="nt">Text</span><span class="p">:</span>
+</code></pre></div>
                 
                   
                 
@@ -562,7 +694,7 @@ generated.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../installation/" title="Installation" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../usage/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -571,19 +703,19 @@ generated.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Installation
+                Getting Started
               </span>
             </div>
           </a>
         
         
-          <a href="../protocols/" title="Protocols" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../factories/" title="Factories" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Protocols
+                Factories
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

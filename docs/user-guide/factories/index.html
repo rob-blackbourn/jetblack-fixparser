@@ -33,21 +33,21 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="/assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-4.6.3">
     
     
       
-        <title>jetblack-fixparser</title>
+        <title>Factories - jetblack-fixparser</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
       
     
     
-      <script src="/assets/javascripts/modernizr.86422ebf.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -56,10 +56,10 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="/assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="/css/custom.css">
+      <link rel="stylesheet" href="../../css/custom.css">
     
     
       
@@ -81,12 +81,16 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
+      <a href="#factories" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="/." title="jetblack-fixparser" aria-label="jetblack-fixparser" class="md-header-nav__button md-logo">
+        <a href="../.." title="jetblack-fixparser" aria-label="jetblack-fixparser" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -103,7 +107,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                
+                Factories
               
             </span>
           
@@ -178,7 +182,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="/." title="jetblack-fixparser" class="md-nav__button md-logo">
+    <a href="../.." title="jetblack-fixparser" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -214,7 +218,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/." title="jetblack-fixparser" class="md-nav__link">
+    <a href="../.." title="jetblack-fixparser" class="md-nav__link">
       jetblack-fixparser
     </a>
   </li>
@@ -224,10 +228,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       User Guide
@@ -245,7 +251,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/user-guide/installation/" title="Installation" class="md-nav__link">
+    <a href="../installation/" title="Installation" class="md-nav__link">
       Installation
     </a>
   </li>
@@ -257,7 +263,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/user-guide/usage/" title="Getting Started" class="md-nav__link">
+    <a href="../usage/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -269,7 +275,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/user-guide/protocols/" title="Protocols" class="md-nav__link">
+    <a href="../protocols/" title="Protocols" class="md-nav__link">
       Protocols
     </a>
   </li>
@@ -279,11 +285,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="/user-guide/factories/" title="Factories" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Factories" class="md-nav__link md-nav__link--active">
       Factories
     </a>
+    
   </li>
 
         
@@ -317,7 +332,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/api/jetblack_fixparser/" title="jetblack_fixparser" class="md-nav__link">
+    <a href="../../api/jetblack_fixparser/" title="jetblack_fixparser" class="md-nav__link">
       jetblack_fixparser
     </a>
   </li>
@@ -335,12 +350,63 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
+                
+                
+                <h1 id="factories">Factories<a class="headerlink" href="#factories" title="Permanent link">&para;</a></h1>
+<p>When two parties communicate over FIX they set and sender and target id which
+never change. We can use a factory to simplify this.</p>
+<p>To create a message using a factory:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">jetblack_fixparser</span> <span class="kn">import</span> <span class="n">load_yaml_protocol</span><span class="p">,</span> <span class="n">FixMessage</span><span class="p">,</span> <span class="n">FixMessageFactory</span>
 
+<span class="n">protocol</span> <span class="o">=</span> <span class="n">load_yaml_protocol</span><span class="p">(</span>
+    <span class="s1">&#39;FIX44.yaml&#39;</span><span class="p">,</span>
+    <span class="n">is_millisecond_time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_float_decimal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_type_enum</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+
+<span class="n">factory</span> <span class="o">=</span> <span class="n">FixMessageFactory</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="s2">&quot;SENDER&quot;</span><span class="p">,</span> <span class="s2">&quot;TARGET&quot;</span><span class="p">)</span>
+
+<span class="n">sending_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+<span class="n">fix_messages</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="s1">&#39;LOGON&#39;</span><span class="p">,</span>
+        <span class="mi">42</span><span class="p">,</span>
+        <span class="n">sending_time</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;EncryptMethod&#39;</span><span class="p">:</span> <span class="s2">&quot;NONE&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;HeartBtInt&#39;</span><span class="p">:</span> <span class="mi">30</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+<span class="n">buffer</span> <span class="o">=</span> <span class="n">fix_message</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">regenerate_integrity</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">roundtrip</span> <span class="o">=</span> <span class="n">FixMessage</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">fix_message</span><span class="o">.</span><span class="n">message</span> <span class="o">==</span> <span class="n">roundtrip</span><span class="o">.</span><span class="n">message</span>
+</code></pre></div>
+                
+                  
+                
+                
+              
               
                 
 
@@ -353,6 +419,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../protocols/" title="Protocols" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Protocols
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../api/jetblack_fixparser/" title="jetblack_fixparser" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                jetblack_fixparser
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -371,9 +472,9 @@
       
     </div>
     
-      <script src="/assets/javascripts/application.c33a9706.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.1.2",url:{base:"/"}})</script>
+      <script>app.initialize({version:"1.1.2",url:{base:"../.."}})</script>
       
     
   </body>
