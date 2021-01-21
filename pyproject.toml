@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jetblack-fixparser"
-version = "2.0.0"
+version = "2.0.1"
 description = "A parser for FIX messages"
 authors = ["Rob Blackbourn <rob.blackbourn@googlemail.com>"]
 license = "Apache-2.0"
@@ -8,6 +8,8 @@ packages = [
     { include = "jetblack_fixparser" }
 ]
 repository = "https://github.com/rob-blackbourn/jetblack-fixparser"
+readme = "README.md"
+documentation = "https://rob-blackbourn.github.io/jetblack-fixparser"
 
 [tool.poetry.dependencies]
 python = "^3.7"
