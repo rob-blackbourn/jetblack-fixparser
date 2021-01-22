@@ -151,31 +151,39 @@ def _decode_bool(
 
 
 def _decode_utc_timestamp(
-        protocol: ProtocolMetaData,
+        _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
         value: bytes
 ) -> datetime:
-    if protocol.is_millisecond_time:
-        return datetime.strptime(
-            value.decode('ascii'),
-            UTCTIMESTAMP_FMT_MILLIS
-        ).replace(tzinfo=timezone.utc)
+    # We can be more relaxed about decoding timestamps.
+    # We accept either:
+    #   YYYYmmdd-HH:MM:SS (length 17)
+    #   YYYYmmdd-HH:MM:SS.fff or YYYYmmdd-HH:MM:SS.ffffff
+    text = value.decode('ascii')
+    if len(text) == 17:
+        fmt = UTCTIMESTAMP_FMT_NO_MILLIS
     else:
-        return datetime.strptime(
-            value.decode('ascii'),
-            UTCTIMESTAMP_FMT_NO_MILLIS
-        ).replace(tzinfo=timezone.utc)
+        fmt = UTCTIMESTAMP_FMT_MILLIS
+
+    return datetime.strptime(text, fmt).replace(tzinfo=timezone.utc)
 
 
 def _decode_utc_time_only(
-        protocol: ProtocolMetaData,
+        _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
         value: bytes
 ) -> datetime:
-    if protocol.is_millisecond_time:
-        return datetime.strptime(value.decode('ascii'), UTCTIMEONLY_FMT_MILLIS)
+    # We can be more relaxed about decoding timestamps.
+    # We accept either:
+    #   HH:MM:SS (length 8)
+    #   HH:MM:SS.fff  or HH:MM:SS.ffffff
+    text = value.decode('ascii')
+    if len(text) == 8:
+        fmt = UTCTIMEONLY_FMT_NO_MILLIS
     else:
-        return datetime.strptime(value.decode('ascii'), UTCTIMEONLY_FMT_NO_MILLIS)
+        fmt = UTCTIMEONLY_FMT_MILLIS
+
+    return datetime.strptime(text, fmt).replace(tzinfo=timezone.utc)
 
 
 def _decode_localmktdate(
