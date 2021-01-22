@@ -52,6 +52,14 @@ def _encode_length(
     return str(value).encode()
 
 
+def _encode_day_of_month(
+        _protocol: ProtocolMetaData,
+        _meta_data: FieldMetaData,
+        value: int
+) -> bytes:
+    return str(value).encode()
+
+
 def _encode_float(
         _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
@@ -242,7 +250,8 @@ _ENCODERS: Mapping[str, Encoder] = {
     ValueType.UTCTIMEONLY.name: _encode_utc_time_only,
     ValueType.LOCALMKTDATE.name: _encode_localmktdate,
     ValueType.UTCDATE.name: _encode_utcdate,
-    ValueType.MONTHYEAR.name: _encode_monthyear
+    ValueType.MONTHYEAR.name: _encode_monthyear,
+    ValueType.DAYOFMONTH.name: _encode_day_of_month
 }
 
 

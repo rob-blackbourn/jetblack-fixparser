@@ -53,6 +53,14 @@ def _decode_length(
     return int(value.lstrip(b'0') or b'0')
 
 
+def _decode_day_of_month(
+        _protocol: ProtocolMetaData,
+        _meta_data: FieldMetaData,
+        value: bytes
+) -> Union[int, str]:
+    return int(value.lstrip(b'0') or b'0')
+
+
 def _decode_float(
         protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
@@ -232,7 +240,8 @@ _DECODERS: Mapping[str, Decoder] = {
     ValueType.UTCTIMEONLY.name: _decode_utc_time_only,
     ValueType.LOCALMKTDATE.name: _decode_localmktdate,
     ValueType.UTCDATE.name: _decode_utcdate,
-    ValueType.MONTHYEAR.name: _decode_monthyear
+    ValueType.MONTHYEAR.name: _decode_monthyear,
+    ValueType.DAYOFMONTH.name: _decode_day_of_month
 }
 
 

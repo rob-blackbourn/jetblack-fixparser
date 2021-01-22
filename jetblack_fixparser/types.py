@@ -25,3 +25,4 @@ class ValueType(Enum):
     LOCALMKTDATE = auto()
     UTCDATE = auto()
     MONTHYEAR = auto()
+    DAYOFMONTH = auto()
