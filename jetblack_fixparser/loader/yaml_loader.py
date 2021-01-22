@@ -1,6 +1,6 @@
 """A loader for YAML formated metadata"""
 
-from typing import Mapping, Optional
+from typing import Mapping, Optional, Union
 
 from ruamel.yaml import YAML
 
@@ -15,7 +15,7 @@ def load_yaml_protocol(
         *,
         is_millisecond_time: bool = True,
         is_float_decimal: bool = False,
-        is_type_enum: Optional[Mapping[ValueType, bool]] = None
+        is_type_enum: Optional[Mapping[Union[ValueType, str], bool]] = None
 ) -> ProtocolMetaData:
     """Load a YAML style protocol file
 
@@ -25,8 +25,8 @@ def load_yaml_protocol(
             Defaults to True.
         is_float_decimal (bool, optional): If true use Decimal for floating
             point numbers. Defaults to False.
-        is_type_enum (Optional[Mapping[ValueType, bool]], optional): Map
-            controlling serialization to enums. Defaults to None.
+        is_type_enum (Optional[Mapping[Union[ValueType, str], bool]], optional):
+            Map controlling serialization to enums. Defaults to None.
 
     Returns:
         ProtocolMetaData: The protocol meta data.
