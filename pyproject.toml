@@ -13,7 +13,6 @@ documentation = "https://rob-blackbourn.github.io/jetblack-fixparser"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-# wheel = "^0.34.2"
 "ruamel.yaml" = "^0.17"
 
 [tool.poetry.dev-dependencies]
