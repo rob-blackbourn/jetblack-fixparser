@@ -1,4 +1,4 @@
-"""A loader for YAML formated metadata"""
+"""A loader for YAML formatted metadata"""
 
 from typing import Mapping, Optional, Union
 
@@ -32,7 +32,7 @@ def load_yaml_protocol(
         ProtocolMetaData: The protocol meta data.
     """
     yaml = YAML()
-    with open(filename, 'rt') as file_ptr:
+    with open(filename, 'rt', encoding="utf8") as file_ptr:
         return load_protocol(
             yaml.load(file_ptr),
             is_millisecond_time=is_millisecond_time,
