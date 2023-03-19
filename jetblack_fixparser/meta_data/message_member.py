@@ -106,13 +106,9 @@ class MessageMemberMetaData:
     def __str__(self) -> str:
         return (
             'MessageMemberMetaData: '
-            'member={member}, '
-            'is_required={is_required}, '
-            'children={children}'
-        ).format(
-            member=self.member,
-            is_required=self.is_required,
-            children=self.children
+            f'member={self.member}, '
+            f'is_required={self.is_required}, '
+            f'children={self.children}'
         )
 
     __repr__ = __str__

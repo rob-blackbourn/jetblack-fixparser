@@ -85,9 +85,12 @@ def is_encodeable_enum(
         value: Union[Any, str],
         value_type: ValueType
 ) -> bool:
-    return (
+    if (
         isinstance(value, str) and
         meta_data.values_by_name and
         value in meta_data.values_by_name and
         protocol.is_type_enum.get(value_type, True)
-    )
+    ):
+        return True
+    else:
+        return False
