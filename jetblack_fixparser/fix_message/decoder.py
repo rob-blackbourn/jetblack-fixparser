@@ -9,6 +9,7 @@ from typing import (
     Optional,
     Set,
     Tuple,
+    ValuesView,
     cast
 )
 
@@ -233,7 +234,12 @@ def _decode_body(
         index,
         {
             cast(FieldMetaData, message_member.member).number: message_member
-            for message_member in message_member_iter(meta_data.fields.values())
+            for message_member in message_member_iter(
+                cast(
+                    ValuesView[MessageMemberMetaData],
+                    meta_data.fields.values()
+                )
+            )
         },
         decoded_message,
         strict

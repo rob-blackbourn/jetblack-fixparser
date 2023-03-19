@@ -7,12 +7,12 @@ from typing import Any, Callable, List, Mapping, Union
 from ..meta_data import ProtocolMetaData, FieldMetaData
 from ..types import ValueType
 
-from .common import(
+from .common import (
     UTCTIMESTAMP_FMT_NO_MILLIS,
     UTCTIMESTAMP_FMT_MILLIS,
     UTCTIMEONLY_FMT_NO_MILLIS,
     UTCTIMEONLY_FMT_MILLIS,
-    is_encodeable_enum
+    is_encodable_enum
 )
 from .errors import EncodingError
 
@@ -22,7 +22,7 @@ def _encode_int(
         meta_data: FieldMetaData,
         value: Union[int, str]
 ) -> bytes:
-    if is_encodeable_enum(protocol, meta_data, value, ValueType.INT):
+    if is_encodable_enum(protocol, meta_data, value, ValueType.INT):
         return meta_data.values_by_name[value]  # type: ignore
     else:
         return str(value).encode()
@@ -130,7 +130,7 @@ def _encode_char(
         meta_data: FieldMetaData,
         value: str
 ) -> bytes:
-    if is_encodeable_enum(protocol, meta_data, value, ValueType.CHAR):
+    if is_encodable_enum(protocol, meta_data, value, ValueType.CHAR):
         return meta_data.values_by_name[value]  # type: ignore
     else:
         return value.encode()
@@ -141,7 +141,7 @@ def _encode_string(
         meta_data: FieldMetaData,
         value: str
 ) -> bytes:
-    if is_encodeable_enum(protocol, meta_data, value, ValueType.STRING):
+    if is_encodable_enum(protocol, meta_data, value, ValueType.STRING):
         return meta_data.values_by_name[value]  # type: ignore
     else:
         return value.encode()
@@ -176,7 +176,7 @@ def _encode_bool(
         meta_data: FieldMetaData,
         value: Union[bool, str]
 ) -> bytes:
-    if is_encodeable_enum(protocol, meta_data, value, ValueType.BOOLEAN):
+    if is_encodable_enum(protocol, meta_data, value, ValueType.BOOLEAN):
         return meta_data.values_by_name[value]  # type: ignore
     else:
         return b'Y' if value else b'N'

@@ -34,20 +34,16 @@ class FieldMetaData:
         } if values else None
 
     def __str__(self) -> str:
+        values = None if self.values is None else {
+            name.decode('ascii'): value
+            for name, value in self.values.items()
+        }
         return (
             'FieldMetaData: '
-            'name="{name}", '
-            'number="{number}", '
-            'type="{type}", '
-            'values={values}'
-        ).format(
-            name=self.name,
-            number=self.number.decode('ascii'),
-            type=self.type,
-            values=None if self.values is None else {
-                name.decode('ascii'): value
-                for name, value in self.values.items()
-            }
+            f'name="{self.name}", '
+            f'number="{self.number.decode("ascii")}", '
+            f'type="{self.type}", '
+            f'values={values}'
         )
 
     __repr__ = __str__
@@ -71,9 +67,10 @@ class ComponentMetaData:
         self.members = members
 
     def __str__(self) -> str:
-        return 'ComponentMetaData: name="{name}", members={members}'.format(
-            name=self.name,
-            members=self.members
+        return (
+            'ComponentMetaData: '
+            f'name="{self.name}", '
+            f'members={self.members}'
         )
 
     __repr__ = __str__

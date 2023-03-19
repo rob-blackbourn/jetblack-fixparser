@@ -16,7 +16,8 @@ class FieldValueError(DecodingError):
 
     def __init__(self, field: FieldMetaData, expected: bytes, received: bytes) -> None:
         super().__init__(
-            f'field {field.number!r} ("{field.name}" expected "{expected!r}" received "{received!r}"'
+            f'field {field.number!r} '
+            f'("{field.name}" expected "{expected!r}" received "{received!r}"'
         )
         self.field = field
         self.expected = expected

@@ -1,6 +1,15 @@
 """Encode a FIX message"""
 
-from typing import Any, Iterator, List, Mapping, MutableMapping, Tuple, cast
+from typing import (
+    Any,
+    Iterator,
+    List,
+    Mapping,
+    MutableMapping,
+    Tuple,
+    ValuesView,
+    cast
+)
 
 from ..meta_data import (
     message_member_iter,
@@ -131,7 +140,9 @@ def encode(
         protocol,
         encoded_message,
         data,
-        message_member_iter(meta_data.fields.values())
+        message_member_iter(
+            cast(ValuesView[MessageMemberMetaData], meta_data.fields.values())
+        )
     )
     _encode_fields(
         protocol,
