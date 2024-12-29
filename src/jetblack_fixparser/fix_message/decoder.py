@@ -52,8 +52,8 @@ def _find_next_member(
     while True:
         try:
             meta_datum = next(meta_data)
-            # TODO: Always field?
             field = cast(FieldMetaData, meta_datum.member)
+            assert isinstance(field, FieldMetaData), "must be a field"
             if field.number == received_field.number:
                 return meta_datum
 
