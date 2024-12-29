@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from typing import Any, Mapping, MutableMapping, Optional, cast
+from typing import Any, Mapping, MutableMapping, Optional, Union, cast
 
 from ..meta_data import (
     ProtocolMetaData,
     MessageMetaData
 )
+from ..types import StrictMode
 
 from .encoder import encode, SOH
 from .decoder import decode, find_message_meta_data
@@ -71,7 +72,7 @@ class FixMessage:
             protocol: ProtocolMetaData,
             buffer: bytes,
             *,
-            strict: bool = True,
+            strict: Union[bool, StrictMode] = True,
             validate: bool = True,
             sep: bytes = SOH,
             convert_sep_for_checksum: bool = True
@@ -81,8 +82,8 @@ class FixMessage:
         Args:
             protocol (ProtocolMetaData): The protocol meta data.
             buffer (bytes): The FIX bytes buffer.
-            strict (bool, optional): If true apply strict validation. Defaults
-                to True.
+            strict (bool | StrictMode, optional): If true apply all strict
+                validation. Individual modes can be specified. Defaults to True.
             validate (bool, optional): If true validate the message. Defaults to
                 True.
             sep (bytes, optional): The field separator. Defaults to SOH.

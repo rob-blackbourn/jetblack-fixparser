@@ -9,6 +9,8 @@ from typing import (
     Optional,
     Set,
     Tuple,
+    Union,
+    ValuesView,
     cast
 )
 
@@ -19,6 +21,7 @@ from ..meta_data import (
     message_member_iter,
     MessageMetaData
 )
+from ..types import StrictMode
 
 from .errors import DecodingError
 from .common import SOH
@@ -69,7 +72,8 @@ def _decode_fields_in_order(
         index: int,
         meta_data: Iterator[MessageMemberMetaData],
         decoded_message: MutableMapping[str, Any],
-        strict: bool
+        ensure_required: bool,
+        ensure_group_order: bool
 ) -> int:
     while index < len(encoded_message):
 
@@ -79,7 +83,8 @@ def _decode_fields_in_order(
             raise DecodingError(
                 f'received unknown field "{field_number!r}" of value "{value!r}"'
             )
-        meta_datum = _find_next_member(received_field, meta_data, strict)
+        meta_datum = _find_next_member(
+            received_field, meta_data, ensure_required)
         if not meta_datum:
             break
         index += 1
@@ -91,7 +96,8 @@ def _decode_fields_in_order(
                 index,
                 meta_datum,
                 int(value),
-                strict
+                ensure_required,
+                ensure_group_order
             )
             decoded_message[received_field.name] = value
         else:
@@ -119,7 +125,8 @@ def _decode_fields_any_order(
         index: int,
         meta_data: MutableMapping[bytes, MessageMemberMetaData],
         decoded_message: MutableMapping[str, Any],
-        strict: bool = True
+        ensure_required: bool,
+        ensure_group_order: bool
 ) -> int:
     field_names_found: Set[str] = set()
     while index < len(encoded_message):
@@ -127,7 +134,7 @@ def _decode_fields_any_order(
         field_number, value = encoded_message[index]
         received_field = protocol.fields_by_number[field_number]
         meta_datum = meta_data.get(field_number)
-        if not meta_datum:
+        if not meta_datum or received_field.name in field_names_found:
             break
 
         field_names_found.add(received_field.name)
@@ -140,7 +147,8 @@ def _decode_fields_any_order(
                 index,
                 meta_datum,
                 int(value),
-                strict
+                ensure_required,
+                ensure_group_order
             )
             decoded_message[received_field.name] = decoded_groups
         else:
@@ -167,20 +175,41 @@ def _decode_group(
         index: int,
         meta_data: MessageMemberMetaData,
         count: int,
-        strict: bool
+        ensure_required: bool,
+        ensure_group_order: bool
 ) -> Tuple[List[MutableMapping[str, Any]], int]:
     assert meta_data.children is not None
     decoded_groups: List[MutableMapping[str, Any]] = []
     for _ in range(int(count)):
         decoded_group: MutableMapping[str, Any] = {}
-        index = _decode_fields_in_order(
-            protocol,
-            encoded_message,
-            index,
-            message_member_iter(meta_data.children.values()),
-            decoded_group,
-            strict
-        )
+        if ensure_group_order:
+            ordered_meta_data = message_member_iter(
+                meta_data.children.values()
+            )
+            index = _decode_fields_in_order(
+                protocol,
+                encoded_message,
+                index,
+                ordered_meta_data,
+                decoded_group,
+                ensure_required,
+                ensure_group_order
+            )
+        else:
+            unordered_meta_data = {
+                cast(FieldMetaData, message_member.member).number: message_member
+                for message_member in message_member_iter(meta_data.children.values())
+            }
+            index = _decode_fields_any_order(
+                protocol,
+                encoded_message,
+                index,
+                unordered_meta_data,
+                decoded_group,
+                ensure_required,
+                ensure_group_order
+            )
+
         decoded_groups.append(decoded_group)
     return decoded_groups, index
 
@@ -189,7 +218,8 @@ def _decode_header(
         protocol: ProtocolMetaData,
         encoded_message: List[Tuple[bytes, bytes]],
         decoded_message: MutableMapping[str, Any],
-        strict: bool
+        ensure_required: bool,
+        ensure_group_order: bool
 ) -> int:
     # The first three header fields must be in order.
     header_fields = list(message_member_iter(protocol.header.values()))
@@ -199,7 +229,8 @@ def _decode_header(
         0,
         iter(header_fields[:3]),
         decoded_message,
-        strict
+        ensure_required,
+        ensure_group_order
     )
 
     # The rest can be in any order.
@@ -212,7 +243,8 @@ def _decode_header(
             for message_member in header_fields[3:]
         },
         decoded_message,
-        strict
+        ensure_required,
+        ensure_group_order
     )
 
     return index
@@ -224,19 +256,28 @@ def _decode_body(
         index: int,
         meta_data: MessageMetaData,
         decoded_message: MutableMapping[str, Any],
-        strict: bool
+        ensure_required: bool,
+        ensure_group_order: bool
 ) -> int:
+    body_meta_data = {
+        cast(FieldMetaData, message_member.member).number: message_member
+        for message_member in message_member_iter(
+            cast(
+                ValuesView[MessageMemberMetaData],
+                meta_data.fields.values()
+            )
+        )
+    }
+
     # Body fields can be in any order
     index = _decode_fields_any_order(
         protocol,
         encoded_message,
         index,
-        {
-            cast(FieldMetaData, message_member.member).number: message_member
-            for message_member in message_member_iter(meta_data.fields.values())
-        },
+        body_meta_data,
         decoded_message,
-        strict
+        ensure_required,
+        ensure_group_order
     )
 
     return index
@@ -247,7 +288,8 @@ def _decode_trailer(
         encoded_message: List[Tuple[bytes, bytes]],
         index: int,
         decoded_message: MutableMapping[str, Any],
-        strict: bool
+        ensure_required: bool,
+        ensure_group_order: bool
 ) -> int:
     # All but the last field can be in any order.
     trailer_fields = list(message_member_iter(protocol.trailer.values()))
@@ -260,7 +302,8 @@ def _decode_trailer(
             for message_member in trailer_fields[:-1]
         },
         decoded_message,
-        strict
+        ensure_required,
+        ensure_group_order
     )
 
     # The last field should be the checksum.
@@ -270,7 +313,8 @@ def _decode_trailer(
         index,
         iter(trailer_fields[-1:]),
         decoded_message,
-        strict
+        ensure_required,
+        ensure_group_order
     )
 
     return index
@@ -303,7 +347,7 @@ def decode(
         protocol: ProtocolMetaData,
         buf: bytes,
         *,
-        strict: bool = True,
+        strict: Union[bool, StrictMode] = True,
         validate: bool = True,
         sep: bytes = SOH,
         convert_sep_for_checksum: bool = True
@@ -324,6 +368,9 @@ def decode(
         Tuple[MutableMapping[str, Any], MessageMetaData]: The message and it's
             meta data
     """
+    if isinstance(strict, bool):
+        strict = StrictMode.ALL if strict else StrictMode.NONE
+
     encoded_message = _to_encoded_message(buf, sep)
     decoded_message: MutableMapping[str, Any] = {}
 
@@ -331,7 +378,8 @@ def decode(
         protocol,
         encoded_message,
         decoded_message,
-        strict
+        StrictMode.ENSURE_REQUIRED in strict,
+        StrictMode.ENSURE_GROUP_ORDER in strict
     )
     meta_data = find_message_meta_data(protocol, decoded_message)
 
@@ -341,7 +389,8 @@ def decode(
         index,
         meta_data,
         decoded_message,
-        strict
+        StrictMode.ENSURE_REQUIRED in strict,
+        StrictMode.ENSURE_GROUP_ORDER in strict
     )
 
     _decode_trailer(
@@ -349,7 +398,8 @@ def decode(
         encoded_message,
         index,
         decoded_message,
-        strict
+        StrictMode.ENSURE_REQUIRED in strict,
+        StrictMode.ENSURE_GROUP_ORDER in strict
     )
 
     if validate:
