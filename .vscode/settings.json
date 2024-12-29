@@ -3,10 +3,6 @@
     "[python]": {
         "editor.formatOnSave": true
     },
-    "python.pythonPath": ".venv/bin/python",
-    "python.linting.pylintUseMinimalCheckers": false,
-    "python.linting.pylintEnabled": true,
-    "python.linting.mypyEnabled": true,
     "cSpell.words": [
         "ACCOUNTNET",
         "Alloc",
@@ -49,6 +45,7 @@
         "LISTID",
         "LOCALMKTDATE",
         "LOFC",
+        "MILLIS",
         "mkdocs",
         "MLEG",
         "MONTHYEAR",
@@ -119,6 +116,5 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
     "python.testing.pytestEnabled": true
 }
