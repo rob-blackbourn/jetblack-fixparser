@@ -36,13 +36,9 @@ class MessageMetaData:
     def __str__(self) -> str:
         return (
             'MessageMetaData: '
-            'name="{name}", '
-            'msgtype="{msgtype}", '
-            'msgcat="{msgcat}"'
-        ).format(
-            name=self.name,
-            msgtype=self.msgtype.decode('ascii'),
-            msgcat=self.msgcat
+            f'name="{self.name}", '
+            f'msgtype="{self.msgtype.decode("ascii")}", '
+            f'msgcat="{self.msgcat}"'
         )
 
     __repr__ = __str__

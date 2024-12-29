@@ -14,9 +14,16 @@ class EncodingError(Exception):
 class FieldValueError(DecodingError):
     """A field value error"""
 
-    def __init__(self, field: FieldMetaData, expected: bytes, received: bytes) -> None:
+    def __init__(
+            self,
+            field: FieldMetaData,
+            expected: bytes,
+            received: bytes
+    ) -> None:
         super().__init__(
-            f'field {field.number!r} ("{field.name}" expected "{expected!r}" received "{received!r}"'
+            f'field {field.number!r} '
+            f'({field.name} expected {expected!r} '
+            f'received {received!r})'
         )
         self.field = field
         self.expected = expected
@@ -28,11 +35,11 @@ class InvalidFieldError(DecodingError):
 
     def __init__(self, field: bytes, value: bytes) -> None:
         super().__init__(
-            f'received unknown field "{field!r}" with value "{value!r}"')
+            f'received unknown field {field!r} with value {value!r}')
 
 
 class InvalidMsgTypeError(DecodingError):
     """An invalid message type error"""
 
     def __init__(self, msgtype: bytes) -> None:
-        super().__init__(f'received unknown msgtype "{msgtype!r}"')
+        super().__init__(f'received unknown msgtype {msgtype!r}')

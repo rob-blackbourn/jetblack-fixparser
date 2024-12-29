@@ -1,6 +1,6 @@
 """Types"""
 
-from enum import Enum, auto
+from enum import Enum, Flag, auto
 
 
 class ValueType(Enum):
@@ -26,3 +26,11 @@ class ValueType(Enum):
     UTCDATE = auto()
     MONTHYEAR = auto()
     DAYOFMONTH = auto()
+
+
+class StrictMode(Flag):
+    """Specific categories of strictness"""
+    NONE = 0
+    ENSURE_REQUIRED = auto()
+    ENSURE_GROUP_ORDER = auto()
+    ALL = ENSURE_REQUIRED | ENSURE_GROUP_ORDER

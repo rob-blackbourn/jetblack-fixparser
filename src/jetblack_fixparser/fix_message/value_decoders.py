@@ -7,7 +7,7 @@ from typing import Any, Callable, List, Mapping, Union
 from ..meta_data import ProtocolMetaData, FieldMetaData
 from ..types import ValueType
 
-from .common import is_decodeable_enum
+from .common import is_decodable_enum
 from .errors import DecodingError
 
 from .common import (
@@ -23,7 +23,7 @@ def _decode_int(
         meta_data: FieldMetaData,
         value: bytes
 ) -> Union[int, str]:
-    if is_decodeable_enum(protocol, meta_data, value, ValueType.INT):
+    if is_decodable_enum(protocol, meta_data, value, ValueType.INT):
         return meta_data.values[value]  # type: ignore
     else:
         return int(value.lstrip(b'0') or b'0')
@@ -106,7 +106,7 @@ def _decode_char(
         meta_data: FieldMetaData,
         value: bytes
 ) -> str:
-    if is_decodeable_enum(protocol, meta_data, value, ValueType.CHAR):
+    if is_decodable_enum(protocol, meta_data, value, ValueType.CHAR):
         return meta_data.values[value]  # type: ignore
     else:
         return value.decode('ascii')
@@ -117,7 +117,7 @@ def _decode_string(
         meta_data: FieldMetaData,
         value: bytes
 ) -> str:
-    if is_decodeable_enum(protocol, meta_data, value, ValueType.STRING):
+    if is_decodable_enum(protocol, meta_data, value, ValueType.STRING):
         return meta_data.values[value]  # type: ignore
     else:
         return value.decode('ascii')
@@ -152,7 +152,7 @@ def _decode_bool(
         meta_data: FieldMetaData,
         value: bytes
 ) -> Union[bool, str]:
-    if is_decodeable_enum(protocol, meta_data, value, ValueType.BOOLEAN):
+    if is_decodable_enum(protocol, meta_data, value, ValueType.BOOLEAN):
         return meta_data.values[value]  # type: ignore
     else:
         return value == b'Y'
@@ -250,7 +250,7 @@ def decode_value(
         meta_data: FieldMetaData,
         value: bytes
 ) -> Any:
-    """Decoide the value of a field
+    """Decode the value of a field
 
     Args:
         protocol (ProtocolMetaData): The FIX protocol

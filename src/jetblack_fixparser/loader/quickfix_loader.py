@@ -1,5 +1,6 @@
 """A loader for QuickFix metadata (XML format)"""
 
+from pathlib import Path
 from typing import Any, Dict, Mapping, Optional, Union
 import xml.dom.minidom as minidom
 import xml.dom as dom
@@ -118,14 +119,15 @@ def _process_root(node: Any) -> Dict[str, Any]:
     return protocol
 
 
-def _convert_xml_file_to_dict(filename: str) -> Dict[str, Any]:
-    document = minidom.parse(filename)
-    config = _process_root(document.documentElement)
-    return config
+def _convert_xml_file_to_dict(filename: Path) -> Dict[str, Any]:
+    with filename.open() as file_ptr:
+        document = minidom.parse(file_ptr)
+        config = _process_root(document.documentElement)
+        return config
 
 
 def load_quickfix_protocol(
-        filename: str,
+        filename: Union[str, Path],
         *,
         is_millisecond_time: bool = True,
         is_float_decimal: bool = False,
@@ -134,7 +136,7 @@ def load_quickfix_protocol(
     """Load a QuickFix style XML protocol file
 
     Args:
-        filename (str): The filename
+        filename (Union[str, Path]): The filename
         is_millisecond_time (bool, optional): If true times have milliseconds.
             Defaults to True.
         is_float_decimal (bool, optional): If true use Decimal for floating
@@ -145,6 +147,8 @@ def load_quickfix_protocol(
     Returns:
         ProtocolMetaData: The protocol meta data.
     """
+    if not isinstance(filename, Path):
+        filename = Path(filename)
 
     config: Dict[str, Any] = _convert_xml_file_to_dict(filename)
     return load_protocol(

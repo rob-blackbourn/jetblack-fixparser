@@ -22,7 +22,7 @@ def calc_checksum(
     """Calculate the FIX message checksum.
 
     In production the separator is always SOH (ascii 0x01). For diagnostics the
-    '|' charactor is often used to allow the message to be printed. As this will
+    '|' character is often used to allow the message to be printed. As this will
     give a different checksum a flag is provided to convert the separator to SOH
     if required.
 
@@ -66,28 +66,46 @@ def calc_body_length(
     return body_length
 
 
-def is_decodeable_enum(
+def is_decodable_enum(
         protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: bytes,
         value_type: ValueType
 ):
-    return (
+    """Check if the field is a decodable enum.
+    Args:
+        protocol (ProtocolMetaData): The FIX protocol.
+        meta_data (FieldMetaData): The field meta data.
+        value (bytes): The value.
+        value_type (ValueType): The value type.
+    Returns:
+        bool: True if the field is a decodable enum.
+    """
+    return True if (
         protocol.is_type_enum.get(value_type, True) and
         meta_data.values and
         value in meta_data.values
-    )
+    ) else False
 
 
-def is_encodeable_enum(
+def is_encodable_enum(
         protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: Union[Any, str],
         value_type: ValueType
 ) -> bool:
-    return (
+    """Check if the field is a encodable enum.
+    Args:
+        protocol (ProtocolMetaData): The FIX protocol.
+        meta_data (FieldMetaData): The field meta data.
+        value (Union[Any, str]): The value.
+        value_type (ValueType): The value type.
+    Returns:
+        bool: true if the field is an encodable enum.
+    """
+    return True if (
         isinstance(value, str) and
         meta_data.values_by_name and
         value in meta_data.values_by_name and
         protocol.is_type_enum.get(value_type, True)
-    )
+    ) else False

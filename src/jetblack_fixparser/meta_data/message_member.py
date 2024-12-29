@@ -71,9 +71,10 @@ class ComponentMetaData:
         self.members = members
 
     def __str__(self) -> str:
-        return 'ComponentMetaData: name="{name}", members={members}'.format(
-            name=self.name,
-            members=self.members
+        return (
+            'ComponentMetaData: '
+            f'name="{self.name}", '
+            f'members={self.members}'
         )
 
     __repr__ = __str__
@@ -106,13 +107,9 @@ class MessageMemberMetaData:
     def __str__(self) -> str:
         return (
             'MessageMemberMetaData: '
-            'member={member}, '
-            'is_required={is_required}, '
-            'children={children}'
-        ).format(
-            member=self.member,
-            is_required=self.is_required,
-            children=self.children
+            f'member={self.member}, '
+            f'is_required={self.is_required}, '
+            f'children={self.children}'
         )
 
     __repr__ = __str__
