@@ -58,7 +58,7 @@ so the `convert_sep_for_checksum` is set to `true`.
 
 ### Encoding
 
-To encode a dictionary describing a FIX message - 
+To encode a dictionary describing a FIX message -
 
 ```python
 from datetime import datetime, timezone
@@ -94,7 +94,7 @@ generated.
 
 ### Factories
 
-To encode and decode a message using a factory - 
+To encode and decode a message using a factory -
 
 ```python
 from datetime import datetime, timezone
