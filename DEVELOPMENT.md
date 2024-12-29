@@ -6,9 +6,18 @@
 
 2. Create the virtual environment.
 
+    For Linux and Mac-OS.
+
     ```bash
-    python -m .venv
+    python -m venv .venv
     . .venv/bin/activate
+    ```
+
+    For windows.
+
+    ```cmd
+    python -m venv venv
+    venv/Scripts/activate
     ```
 
 3. Update pip and install build and twine in the virtual environment.
