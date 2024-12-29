@@ -1,6 +1,6 @@
 [project]
 name = "jetblack-fixparser"
-version = "2.3.0"
+version = "2.5.0"
 description = "A parser for FIX messages"
 authors = [
   { name="Rob Blackbourn", email="rob.blackbourn@gmail.com" },
