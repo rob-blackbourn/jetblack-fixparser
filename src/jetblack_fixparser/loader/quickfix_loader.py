@@ -1,7 +1,7 @@
 """A loader for QuickFix metadata (XML format)"""
 
 from pathlib import Path
-from typing import Any, Dict, Mapping, Optional, Union
+from typing import Any, Mapping
 import xml.dom.minidom as minidom
 import xml.dom as dom
 
@@ -11,8 +11,8 @@ from ..types import ValueType
 from .loader import load_protocol
 
 
-def _process_members(node: Any) -> Dict[str, Any]:
-    members: Dict[str, Any] = {}
+def _process_members(node: Any) -> dict[str, Any]:
+    members: dict[str, Any] = {}
     for child in node.childNodes:
         if child.nodeType != dom.Node.ELEMENT_NODE:
             continue
@@ -38,7 +38,7 @@ def _process_members(node: Any) -> Dict[str, Any]:
     return members
 
 
-def _process_message(node: Any) -> Dict[str, Any]:
+def _process_message(node: Any) -> dict[str, Any]:
     return {
         'msgtype': node.attributes['msgtype'].value,
         'msgcat': node.attributes['msgcat'].value,
@@ -46,7 +46,7 @@ def _process_message(node: Any) -> Dict[str, Any]:
     }
 
 
-def _process_field(node: Any) -> Dict[str, Any]:
+def _process_field(node: Any) -> dict[str, Any]:
     return {
         'number': node.attributes['number'].value,
         'type': node.attributes['type'].value,
@@ -57,7 +57,7 @@ def _process_field(node: Any) -> Dict[str, Any]:
     }
 
 
-def _process_messages(node: Any) -> Dict[str, Any]:
+def _process_messages(node: Any) -> dict[str, Any]:
     return {
         child.attributes['name'].value: _process_message(child)
         for child in node.childNodes
@@ -65,7 +65,7 @@ def _process_messages(node: Any) -> Dict[str, Any]:
     }
 
 
-def _process_components(node: Any) -> Dict[str, Any]:
+def _process_components(node: Any) -> dict[str, Any]:
     return {
         child.attributes['name'].value: _process_members(child)
         for child in node.childNodes
@@ -73,7 +73,7 @@ def _process_components(node: Any) -> Dict[str, Any]:
     }
 
 
-def _process_fields(node: Any) -> Dict[str, Any]:
+def _process_fields(node: Any) -> dict[str, Any]:
     return {
         child.attributes['name'].value: _process_field(child)
         for child in node.childNodes
@@ -81,7 +81,7 @@ def _process_fields(node: Any) -> Dict[str, Any]:
     }
 
 
-def _process_root(node: Any) -> Dict[str, Any]:
+def _process_root(node: Any) -> dict[str, Any]:
     major = node.attributes['major'].value
     minor = node.attributes['minor'].value
     servicepack = node.attributes['servicepack'].value
@@ -119,7 +119,7 @@ def _process_root(node: Any) -> Dict[str, Any]:
     return protocol
 
 
-def _convert_xml_file_to_dict(filename: Path) -> Dict[str, Any]:
+def _convert_xml_file_to_dict(filename: Path) -> dict[str, Any]:
     with filename.open() as file_ptr:
         document = minidom.parse(file_ptr)
         config = _process_root(document.documentElement)
@@ -127,21 +127,21 @@ def _convert_xml_file_to_dict(filename: Path) -> Dict[str, Any]:
 
 
 def load_quickfix_protocol(
-        filename: Union[str, Path],
+        filename: str | Path,
         *,
         is_millisecond_time: bool = True,
         is_float_decimal: bool = False,
-        is_type_enum: Optional[Mapping[Union[ValueType, str], bool]] = None
+        is_type_enum: Mapping[ValueType | str, bool] | None = None
 ) -> ProtocolMetaData:
     """Load a QuickFix style XML protocol file
 
     Args:
-        filename (Union[str, Path]): The filename
+        filename (str | Path): The filename
         is_millisecond_time (bool, optional): If true times have milliseconds.
             Defaults to True.
         is_float_decimal (bool, optional): If true use Decimal for floating
             point numbers. Defaults to False.
-        is_type_enum (Optional[Mapping[Union[ValueType, str], bool]], optional):
+        is_type_enum (Mapping[ValueType | str, bool] | None, optional):
             A map of types to control serialization to enums. Defaults to None.
 
     Returns:
@@ -150,7 +150,7 @@ def load_quickfix_protocol(
     if not isinstance(filename, Path):
         filename = Path(filename)
 
-    config: Dict[str, Any] = _convert_xml_file_to_dict(filename)
+    config: dict[str, Any] = _convert_xml_file_to_dict(filename)
     return load_protocol(
         config,
         is_millisecond_time=is_millisecond_time,

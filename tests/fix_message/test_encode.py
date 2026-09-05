@@ -1,7 +1,6 @@
 """Tests for encoding"""
 
 from datetime import datetime, timezone
-from typing import Mapping, Optional
 
 from jetblack_fixparser import load_yaml_protocol, FixMessage, ValueType
 

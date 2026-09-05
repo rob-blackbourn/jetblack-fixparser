@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from decimal import Decimal
-from typing import Any, Callable, List, Mapping, Union
+from typing import Any, Callable, Mapping
 
 from ..meta_data import ProtocolMetaData, FieldMetaData
 from ..types import ValueType
@@ -20,7 +20,7 @@ from .errors import EncodingError
 def _encode_int(
         protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
-        value: Union[int, str]
+        value: int | str
 ) -> bytes:
     if is_encodable_enum(protocol, meta_data, value, ValueType.INT):
         return meta_data.values_by_name[value]  # type: ignore
@@ -63,7 +63,7 @@ def _encode_day_of_month(
 def _encode_float(
         _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
-        value: Union[Decimal, float, int]
+        value: float | Decimal | int
 ) -> bytes:
     if isinstance(value, Decimal):
         return str(value).encode()
@@ -76,7 +76,7 @@ def _encode_float(
 def _encode_qty(
         _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
-        value: Union[Decimal, float, int]
+        value: Decimal | float | int
 ) -> bytes:
     if isinstance(value, Decimal):
         return str(value).encode()
@@ -89,7 +89,7 @@ def _encode_qty(
 def _encode_price(
         _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
-        value: Union[Decimal, float, int]
+        value: Decimal | float | int
 ) -> bytes:
     if isinstance(value, Decimal):
         return str(value).encode()
@@ -102,7 +102,7 @@ def _encode_price(
 def _encode_price_offset(
         _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
-        value: Union[Decimal, float, int]
+        value: Decimal | float | int
 ) -> bytes:
     if isinstance(value, Decimal):
         return str(value).encode()
@@ -115,7 +115,7 @@ def _encode_price_offset(
 def _encode_amt(
         _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
-        value: Union[Decimal, float, int]
+        value: Decimal | float | int
 ) -> bytes:
     if isinstance(value, Decimal):
         return str(value).encode()
@@ -174,7 +174,7 @@ def _encode_monthyear(
 def _encode_bool(
         protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
-        value: Union[bool, str]
+        value: bool | str
 ) -> bytes:
     if is_encodable_enum(protocol, meta_data, value, ValueType.BOOLEAN):
         return meta_data.values_by_name[value]  # type: ignore
@@ -185,7 +185,7 @@ def _encode_bool(
 def _encode_multi_value_str(
         _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
-        value: List[str]
+        value: list[str]
 ) -> bytes:
     return ' '.join(value).encode()
 
@@ -228,7 +228,7 @@ def _encode_utcdate(
     return value.strftime('%Y%m%d').encode()
 
 
-Encoder = Callable[[ProtocolMetaData, FieldMetaData, Any], bytes]
+type Encoder = Callable[[ProtocolMetaData, FieldMetaData, Any], bytes]
 
 _ENCODERS: Mapping[str, Encoder] = {
     ValueType.INT.name: _encode_int,

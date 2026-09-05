@@ -1,10 +1,10 @@
 """Fields"""
 
-from typing import Mapping, Any, Union
+from typing import Mapping, Any
 from ..meta_data import FieldMetaData
 
 
-def _to_number_as_bytes(number: Union[str, int]) -> bytes:
+def _to_number_as_bytes(number: str | int) -> bytes:
     if isinstance(number, int):
         number = str(number)
     return number.encode('ascii')

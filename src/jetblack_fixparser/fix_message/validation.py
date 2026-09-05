@@ -1,6 +1,6 @@
 """FIX message validation"""
 
-from typing import Any, List, Mapping, Tuple
+from typing import Any, Mapping
 
 from ..meta_data import (
     ProtocolMetaData,
@@ -24,7 +24,7 @@ def _assert_field_value_matches(
 def assert_message_valid(
         protocol: ProtocolMetaData,
         buf: bytes,
-        encoded_message: List[Tuple[bytes, bytes]],
+        encoded_message: list[tuple[bytes, bytes]],
         decoded_message: Mapping[str, Any],
         sep: bytes,
         convert_sep_to_soh_for_checksum: bool
@@ -34,7 +34,7 @@ def assert_message_valid(
     Args:
         protocol (ProtocolMetaData): The protocol meta data
         buf (bytes): The FIX message as bytes
-        encoded_message (List[Tuple[bytes, bytes]]): The encoded message.
+        encoded_message (list[tuple[bytes, bytes]]): The encoded message.
         decoded_message (Mapping[str, Any]): The decoded message
         sep (bytes): The field separator
         convert_sep_to_soh_for_checksum (bool): If true convert the separator

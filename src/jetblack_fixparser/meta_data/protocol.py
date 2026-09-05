@@ -1,6 +1,6 @@
 """The FIX protocol meta data"""
 
-from typing import Mapping, Optional, Union
+from typing import Mapping
 
 from ..types import ValueType
 
@@ -27,7 +27,7 @@ class ProtocolMetaData:
             *,
             is_millisecond_time: bool = True,
             is_float_decimal: bool = False,
-            is_type_enum: Optional[Mapping[Union[ValueType, str], bool]] = None
+            is_type_enum: Mapping[ValueType | str, bool] | None = None
     ) -> None:
         """Initialise the FIX protocol meta data.
 
@@ -43,7 +43,7 @@ class ProtocolMetaData:
                 millisecond accuracy. Defaults to True.
             is_float_decimal (bool, optional): If true use Decimal to represent
                 floating point values. Defaults to False.
-            is_type_enum (Optional[Mapping[Union[ValueType, str], bool]], optional): A map
+            is_type_enum (Mapping[ValueType | str, bool] | None, optional): A map
                 of FIX field types to bool, where true or missing indicates an
                 enum should be used when decoding if available. Defaults to
                 None.

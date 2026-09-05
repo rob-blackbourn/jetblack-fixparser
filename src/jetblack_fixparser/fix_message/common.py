@@ -1,6 +1,6 @@
 """Common Code"""
 
-from typing import Any, List, Tuple, Union
+from typing import Any
 
 from ..meta_data import ProtocolMetaData, FieldMetaData
 from ..types import ValueType
@@ -44,14 +44,14 @@ def calc_checksum(
 
 def calc_body_length(
         buf: bytes,
-        encoded_message: List[Tuple[bytes, bytes]],
+        encoded_message: list[tuple[bytes, bytes]],
         sep: bytes = SOH
 ) -> int:
     """Calculate the body length
 
     Args:
         buf (bytes): The FIX message buffer
-        encoded_message (List[Tuple[bytes, bytes]]): The encoded FIX message
+        encoded_message (list[tuple[bytes, bytes]]): The encoded FIX message
         sep (bytes, optional): The message separator. Defaults to SOH.
 
     Returns:
@@ -91,14 +91,14 @@ def is_decodable_enum(
 def is_encodable_enum(
         protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
-        value: Union[Any, str],
+        value: str | Any,
         value_type: ValueType
 ) -> bool:
     """Check if the field is a encodable enum.
     Args:
         protocol (ProtocolMetaData): The FIX protocol.
         meta_data (FieldMetaData): The field meta data.
-        value (Union[Any, str]): The value.
+        value (str | Any): The value.
         value_type (ValueType): The value type.
     Returns:
         bool: true if the field is an encodable enum.

@@ -5,11 +5,28 @@ description = "A parser for FIX messages"
 authors = [
   { name="Rob Blackbourn", email="rob.blackbourn@gmail.com" },
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 readme = "README.md"
 dependencies = [
   "ruamel.yaml"
 ]
+
+[project.optional-dependencies]
+dev = [
+  "build",
+  "twine",
+  "pytest",
+  "pylint",
+  "autopep8",
+  "mypy",
+]
+docs = [
+  "mkdocs>=1.6.1,<2.0.0",
+  "mkdocs-material>=9.5.45,<10.0.0",
+  "jetblack-markdown>=1.2.0,<2.0.0",
+]
+
+
 [project.urls]
 Homepage = "https://github.com/rob-blackbourn/jetblack-fixparser"
 Issues = "https://github.com/rob-blackbourn/jetblack-fixparser/issues"
@@ -17,3 +34,32 @@ Issues = "https://github.com/rob-blackbourn/jetblack-fixparser/issues"
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
+# pylint
+[tool.pylint.main]
+py-version = "3.12"
+jobs = 4
+
+[tool.pylint.basic]
+good-names = ["i", "j", "k", "ex", "Run", "_"]
+bad-names = ["foo", "bar", "baz", "toto", "tutu", "tata"]
+
+[tool.pylint."messages control"]
+disable = [
+  "consider-using-f-string",
+    "missing-module-docstring",
+]
+
+# pytest
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+
+# mypy
+[tool.mypy]
+files = [ "src", "tests" ]
+
+[[tool.mypy.overrides]]
+module = "pytest"
+ignore_missing_imports = true
