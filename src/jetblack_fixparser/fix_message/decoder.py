@@ -3,13 +3,8 @@
 from typing import (
     Any,
     Iterator,
-    List,
     Mapping,
     MutableMapping,
-    Optional,
-    Set,
-    Tuple,
-    Union,
     ValuesView,
     cast
 )
@@ -30,13 +25,13 @@ from .value_decoders import decode_value
 from .value_encoders import encode_value
 
 
-def _split_item(item: bytes) -> Tuple[bytes, bytes]:
+def _split_item(item: bytes) -> tuple[bytes, bytes]:
     field_id, _, field_value = item.partition(b'=')
     return field_id, field_value
 
 
-def _to_encoded_message(buf: bytes, sep: bytes) -> List[Tuple[bytes, bytes]]:
-    encoded_message: List[Tuple[bytes, bytes]] = [
+def _to_encoded_message(buf: bytes, sep: bytes) -> list[tuple[bytes, bytes]]:
+    encoded_message: list[tuple[bytes, bytes]] = [
         _split_item(field_value)
         for field_value in buf.split(sep)
     ]
@@ -47,7 +42,7 @@ def _find_next_member(
         received_field: FieldMetaData,
         meta_data: Iterator[MessageMemberMetaData],
         strict: bool
-) -> Optional[MessageMemberMetaData]:
+) -> MessageMemberMetaData | None:
     # Find the next matching field.
     while True:
         try:
@@ -68,7 +63,7 @@ def _find_next_member(
 
 def _decode_fields_in_order(
         protocol: ProtocolMetaData,
-        encoded_message: List[Tuple[bytes, bytes]],
+        encoded_message: list[tuple[bytes, bytes]],
         index: int,
         meta_data: Iterator[MessageMemberMetaData],
         decoded_message: MutableMapping[str, Any],
@@ -121,14 +116,14 @@ def _decode_fields_in_order(
 
 def _decode_fields_any_order(
         protocol: ProtocolMetaData,
-        encoded_message: List[Tuple[bytes, bytes]],
+        encoded_message: list[tuple[bytes, bytes]],
         index: int,
         meta_data: MutableMapping[bytes, MessageMemberMetaData],
         decoded_message: MutableMapping[str, Any],
         ensure_required: bool,
         ensure_group_order: bool
 ) -> int:
-    field_names_found: Set[str] = set()
+    field_names_found: set[str] = set()
     while index < len(encoded_message):
 
         field_number, value = encoded_message[index]
@@ -171,15 +166,15 @@ def _decode_fields_any_order(
 
 def _decode_group(
         protocol: ProtocolMetaData,
-        encoded_message: List[Tuple[bytes, bytes]],
+        encoded_message: list[tuple[bytes, bytes]],
         index: int,
         meta_data: MessageMemberMetaData,
         count: int,
         ensure_required: bool,
         ensure_group_order: bool
-) -> Tuple[List[MutableMapping[str, Any]], int]:
+) -> tuple[list[MutableMapping[str, Any]], int]:
     assert meta_data.children is not None
-    decoded_groups: List[MutableMapping[str, Any]] = []
+    decoded_groups: list[MutableMapping[str, Any]] = []
     for _ in range(int(count)):
         decoded_group: MutableMapping[str, Any] = {}
         if ensure_group_order:
@@ -216,7 +211,7 @@ def _decode_group(
 
 def _decode_header(
         protocol: ProtocolMetaData,
-        encoded_message: List[Tuple[bytes, bytes]],
+        encoded_message: list[tuple[bytes, bytes]],
         decoded_message: MutableMapping[str, Any],
         ensure_required: bool,
         ensure_group_order: bool
@@ -252,7 +247,7 @@ def _decode_header(
 
 def _decode_body(
         protocol: ProtocolMetaData,
-        encoded_message: List[Tuple[bytes, bytes]],
+        encoded_message: list[tuple[bytes, bytes]],
         index: int,
         meta_data: MessageMetaData,
         decoded_message: MutableMapping[str, Any],
@@ -285,7 +280,7 @@ def _decode_body(
 
 def _decode_trailer(
         protocol: ProtocolMetaData,
-        encoded_message: List[Tuple[bytes, bytes]],
+        encoded_message: list[tuple[bytes, bytes]],
         index: int,
         decoded_message: MutableMapping[str, Any],
         ensure_required: bool,
@@ -347,17 +342,18 @@ def decode(
         protocol: ProtocolMetaData,
         buf: bytes,
         *,
-        strict: Union[bool, StrictMode] = True,
+        strict: bool | StrictMode = True,
         validate: bool = True,
         sep: bytes = SOH,
         convert_sep_for_checksum: bool = True
-) -> Tuple[MutableMapping[str, Any], MessageMetaData]:
+) -> tuple[MutableMapping[str, Any], MessageMetaData]:
     """Decode a FIX bytes buffer
 
     Args:
         protocol (ProtocolMetaData): The protocol meta data.
         buf (bytes): The FIX bytes buffer.
-        strict (bool, optional): If true use strict validation. Defaults to True.
+        strict (bool | StrictMode, optional): If true use strict validation.
+            Defaults to True.
         validate (bool, optional): If true validate the message. Defaults to
             True.
         sep (bytes, optional): The field separator. Defaults to SOH.
@@ -365,7 +361,7 @@ def decode(
             before calculating the checksum. Defaults to True.
 
     Returns:
-        Tuple[MutableMapping[str, Any], MessageMetaData]: The message and it's
+        tuple[MutableMapping[str, Any], MessageMetaData]: The message and it's
             meta data
     """
     if isinstance(strict, bool):

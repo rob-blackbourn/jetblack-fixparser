@@ -1,12 +1,12 @@
 """Meta data for the FIX message"""
 
-from typing import Mapping, Union
+from typing import Mapping
 
 from .message_member import MessageMemberMetaData
 
-MessageFieldMetaDataMapping = Mapping[
+type MessageFieldMetaDataMapping = Mapping[
     str,
-    Union[MessageMemberMetaData, 'MessageFieldMetaDataMapping']
+    MessageMemberMetaData | 'MessageFieldMetaDataMapping'
 ]
 
 

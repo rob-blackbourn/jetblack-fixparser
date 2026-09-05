@@ -1,6 +1,6 @@
 """Messages"""
 
-from typing import Any, Mapping, MutableMapping, Optional
+from typing import Any, Mapping, MutableMapping
 
 from ..meta_data import FieldMetaData, ComponentMetaData, MessageMemberMetaData, MessageMetaData
 
@@ -106,13 +106,13 @@ def parse_header(
 
 
 def parse_components(
-        info: Optional[Mapping[str, Any]],
+        info: Mapping[str, Any] | None,
         field_meta_data: Mapping[str, FieldMetaData]
 ) -> Mapping[str, ComponentMetaData]:
     """Parse the components.
 
     Args:
-        info (Optional[Mapping[str, Any]]): The components
+        info (Mapping[str, Any] | None): The components
         field_meta_data (Mapping[str, FieldMetaData]): The field metadata.
 
     Returns:

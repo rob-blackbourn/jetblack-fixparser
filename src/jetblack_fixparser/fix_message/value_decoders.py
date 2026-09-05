@@ -2,7 +2,7 @@
 
 from datetime import datetime, timezone
 from decimal import Decimal
-from typing import Any, Callable, List, Mapping, Union
+from typing import Any, Callable, Mapping
 
 from ..meta_data import ProtocolMetaData, FieldMetaData
 from ..types import ValueType
@@ -22,7 +22,7 @@ def _decode_int(
         protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: bytes
-) -> Union[int, str]:
+) -> int | str:
     if is_decodable_enum(protocol, meta_data, value, ValueType.INT):
         return meta_data.values[value]  # type: ignore
     else:
@@ -57,7 +57,7 @@ def _decode_day_of_month(
         _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
         value: bytes
-) -> Union[int, str]:
+) -> int | str:
     return int(value.lstrip(b'0') or b'0')
 
 
@@ -65,7 +65,7 @@ def _decode_float(
         protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
         value: bytes
-) -> Union[float, Decimal]:
+) -> float | Decimal:
     return Decimal(value.decode('ascii')) if protocol.is_float_decimal else float(value)
 
 
@@ -73,7 +73,7 @@ def _decode_qty(
         protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
         value: bytes
-) -> Union[float, Decimal]:
+) -> float | Decimal:
     return Decimal(value.decode('ascii')) if protocol.is_float_decimal else float(value)
 
 
@@ -81,7 +81,7 @@ def _decode_price(
         protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
         value: bytes
-) -> Union[float, Decimal]:
+) -> float | Decimal:
     return Decimal(value.decode('ascii')) if protocol.is_float_decimal else float(value)
 
 
@@ -89,7 +89,7 @@ def _decode_price_offset(
         protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
         value: bytes
-) -> Union[float, Decimal]:
+) -> float | Decimal:
     return Decimal(value.decode('ascii')) if protocol.is_float_decimal else float(value)
 
 
@@ -97,7 +97,7 @@ def _decode_amt(
         protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
         value: bytes
-) -> Union[float, Decimal]:
+) -> float | Decimal:
     return Decimal(value.decode('ascii')) if protocol.is_float_decimal else float(value)
 
 
@@ -143,7 +143,7 @@ def _decode_multiple_value_str(
         _protocol: ProtocolMetaData,
         _meta_data: FieldMetaData,
         value: bytes
-) -> List[str]:
+) -> list[str]:
     return value.decode('ascii').split(' ')
 
 
@@ -151,7 +151,7 @@ def _decode_bool(
         protocol: ProtocolMetaData,
         meta_data: FieldMetaData,
         value: bytes
-) -> Union[bool, str]:
+) -> bool | str:
     if is_decodable_enum(protocol, meta_data, value, ValueType.BOOLEAN):
         return meta_data.values[value]  # type: ignore
     else:
@@ -218,7 +218,7 @@ def _decode_monthyear(
     return value.decode('ascii')
 
 
-Decoder = Callable[[ProtocolMetaData, FieldMetaData, bytes], Any]
+type Decoder = Callable[[ProtocolMetaData, FieldMetaData, bytes], Any]
 
 _DECODERS: Mapping[str, Decoder] = {
     ValueType.INT.name: _decode_int,

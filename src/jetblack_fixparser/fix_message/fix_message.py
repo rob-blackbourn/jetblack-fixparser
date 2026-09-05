@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from typing import Any, Mapping, MutableMapping, Optional, Union, cast
+from typing import Any, Mapping, MutableMapping, cast
 
 from ..meta_data import (
     ProtocolMetaData,
@@ -22,7 +22,7 @@ class FixMessage:
             self,
             protocol: ProtocolMetaData,
             message: Mapping[str, Any],
-            meta_data: Optional[MessageMetaData] = None
+            meta_data: MessageMetaData | None = None
     ) -> None:
         """Initialise the FIX message
 
@@ -30,7 +30,7 @@ class FixMessage:
             protocol (ProtocolMetaData): The protocol meta data.
             message (Mapping[str, Any]): The fix message in the form of a
                 mapping of message names to values.
-            meta_data (Optional[MessageMetaData], optional): Optional meta data.
+            meta_data (MessageMetaData | None, optional): Optional meta data.
                 If this is not supplied it will be discovered from the protocol
                 meta data. Defaults to None.
         """
@@ -72,7 +72,7 @@ class FixMessage:
             protocol: ProtocolMetaData,
             buffer: bytes,
             *,
-            strict: Union[bool, StrictMode] = True,
+            strict: bool | StrictMode = True,
             validate: bool = True,
             sep: bytes = SOH,
             convert_sep_for_checksum: bool = True

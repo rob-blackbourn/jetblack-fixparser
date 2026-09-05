@@ -11,7 +11,8 @@ def message_member_iter(
     """An iterator for message members
 
     Args:
-        message_members (ValuesView[MessageMemberMetaData]): The members of the message
+        message_members (ValuesView[MessageMemberMetaData]): The members of the
+            message
 
     Yields:
         Iterator[MessageMemberMetaData]: The next message member.

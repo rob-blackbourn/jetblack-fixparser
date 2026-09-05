@@ -1,7 +1,7 @@
 """FIX message factory"""
 
 from datetime import datetime
-from typing import Any, Mapping, Optional
+from typing import Any, Mapping
 
 from ..meta_data import ProtocolMetaData
 
@@ -21,7 +21,7 @@ class FixMessageFactory:
             validate: bool = True,
             sep: bytes = SOH,
             convert_sep_for_checksum: bool = True,
-            header_kwargs: Optional[Mapping[str, Any]] = None
+            header_kwargs: Mapping[str, Any] | None = None
     ) -> None:
         """Initialise the message factory
 
@@ -36,7 +36,7 @@ class FixMessageFactory:
             sep (bytes, optional): The field separator to use. Defaults to SOH.
             convert_sep_for_checksum (bool, optional): If true convert the field
                 separator before calculating the checksum. Defaults to True.
-            header_kwargs (Optional[Mapping[str, Any]], optional): Extra header
+            header_kwargs (Mapping[str, Any] | None, optional): Extra header
                 args. Defaults to None.
         """
         self.protocol = protocol
@@ -53,9 +53,9 @@ class FixMessageFactory:
             msg_type: str,
             msg_seq_num: int,
             sending_time: datetime,
-            body_kwargs: Optional[Mapping[str, Any]] = None,
-            header_kwargs: Optional[Mapping[str, Any]] = None,
-            trailer_kwargs: Optional[Mapping[str, Any]] = None
+            body_kwargs: Mapping[str, Any] | None = None,
+            header_kwargs: Mapping[str, Any] | None = None,
+            trailer_kwargs: Mapping[str, Any] | None = None
     ) -> FixMessage:
         """Create a FIX message
 
@@ -63,11 +63,11 @@ class FixMessageFactory:
             msg_type (str): The message type.
             msg_seq_num (int): The message sequence number.
             sending_time (datetime): The sending time.
-            body_kwargs (Optional[Mapping[str, Any]], optional): The message
+            body_kwargs (Mapping[str, Any] | None, optional): The message
                 body. Defaults to None.
-            header_kwargs (Optional[Mapping[str, Any]], optional): Extra header
+            header_kwargs (Mapping[str, Any] | None, optional): Extra header
                 args. Defaults to None.
-            trailer_kwargs (Optional[Mapping[str, Any]], optional): Extra
+            trailer_kwargs (Mapping[str, Any] | None, optional): Extra
                 trailer args. Defaults to None.
 
         Returns:

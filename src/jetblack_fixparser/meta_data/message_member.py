@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Mapping, Optional, Union
+from typing import Mapping
 
 
 class FieldMetaData:
@@ -13,7 +13,7 @@ class FieldMetaData:
             name: str,
             number: bytes,
             type_: str,
-            values: Optional[Mapping[bytes, str]] = None
+            values: Mapping[bytes, str] | None = None
     ) -> None:
         """Initialise the field meta data
 
@@ -21,7 +21,7 @@ class FieldMetaData:
             name (str): The name.
             number (bytes): The description
             type_ (str): The type
-            values (Optional[Mapping[bytes, str]], optional): Enum values.
+            values (Mapping[bytes, str] | None, optional): Enum values.
                 Defaults to None.
         """
         self.name = name
@@ -85,18 +85,18 @@ class MessageMemberMetaData:
 
     def __init__(
             self,
-            member: Union[FieldMetaData, ComponentMetaData],
+            member: FieldMetaData | ComponentMetaData,
             type_: str,
             is_required: bool,
-            children: Optional[Mapping[str, MessageMemberMetaData]] = None
+            children: Mapping[str, MessageMemberMetaData] | None = None
     ) -> None:
         """Initialise the member meta data
 
         Args:
-            member (Union[FieldMetaData, ComponentMetaData]): The member
+            member (FieldMetaData | ComponentMetaData): The member
             type_ (str): The type (field, group, or component).
             is_required (bool): If true the member is required.
-            children (Optional[Mapping[str, MessageMemberMetaData]], optional):
+            children (Mapping[str, MessageMemberMetaData] | None, optional):
                 Child members. Defaults to None.
         """
         self.member = member
@@ -115,7 +115,7 @@ class MessageMemberMetaData:
     __repr__ = __str__
 
 
-MessageFieldMetaDataMapping = Mapping[
+type MessageFieldMetaDataMapping = Mapping[
     str,
-    Union[MessageMemberMetaData, 'MessageFieldMetaDataMapping']
+    MessageMemberMetaData | 'MessageFieldMetaDataMapping'
 ]
